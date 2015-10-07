@@ -1,4 +1,4 @@
-# starter-Angular
+# Aurore
 
 ## Requirements
 * [Vagrant](https://www.vagrantup.com/downloads.html)

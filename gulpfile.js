@@ -10,10 +10,10 @@ var jscs = require('gulp-jscs');
 var livereload = require('gulp-livereload');
 var clean = require('gulp-clean');
 var notify = require('gulp-notify');
+var concat = require('gulp-concat');
 // var browserSync = require('browser-sync').create();
 // var uglify = require('gulp-uglify');
 // var reload = browserSync.reload;
-// var concat = require('gulp-concat');
 
 // var gulpsync = require('gulp-sync')(gulp);
 // var uncss = require('gulp-uncss');
@@ -25,12 +25,14 @@ var sourceDirectory = './app';
 var sourcePath = {
 	scss: sourceDirectory + '/scss/**/*.scss',
 	js: sourceDirectory + '/js/**/*.js',
-	other: [ sourceDirectory + '/font/**', sourceDirectory + '/img/**', sourceDirectory + '/libs/**', sourceDirectory + '/partials/**', sourceDirectory + '/index.html' ]
+	jsLibs: sourceDirectory + '/libs/*.js',
+	other: [ sourceDirectory + '/font/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/index.html' ]
 };
 var distDirectory = './dist';
 var distPath = {
 	css: distDirectory + '/css',
 	js: distDirectory + '/js',
+	jsLibs: distDirectory + '/libs/',
 	other: distDirectory
 };
 
@@ -57,6 +59,12 @@ gulp.task('js', function() {
 	.pipe(gulp.dest(distPath.js));
 });
 
+gulp.task('jsLibs', function() {
+	return gulp.src(sourcePath.jsLibs)
+	.pipe(concat('libs.js'))
+	.pipe(gulp.dest(distPath.jsLibs));
+});
+
 gulp.task('clean', function(){
 	return gulp.src(distDirectory, {read: false})
 	.pipe(clean());
@@ -67,6 +75,7 @@ gulp.task('watch', function() {
 	gulp.watch(sourcePath.scss, ['css']);
 	gulp.watch(sourcePath.js, ['js']);
 	gulp.watch(sourcePath.other, ['copy']);
+	gulp.watch(sourcePath.jsLibs, ['jsLibs']);
 	gulp.watch([sourceDirectory + '/**']).on('change', function() {
 		livereload();
 	});
@@ -97,4 +106,4 @@ gulp.task('copy', function() {
 // });
 
 // Default task
-gulp.task('default', ['css', 'js', 'copy']);
+gulp.task('default', ['css', 'js', 'copy', 'jsLibs']);
