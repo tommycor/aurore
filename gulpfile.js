@@ -11,6 +11,7 @@ var livereload = require('gulp-livereload');
 var clean = require('gulp-clean');
 var notify = require('gulp-notify');
 var concat = require('gulp-concat');
+var plumber = require('gulp-plumber');
 // var browserSync = require('browser-sync').create();
 // var uglify = require('gulp-uglify');
 // var reload = browserSync.reload;
@@ -52,11 +53,13 @@ gulp.task('css', function() {
 // Tâche "js" = uglify + concat
 gulp.task('js', function() {
 	return gulp.src(sourcePath.js)
+	.pipe(plumber())
 	.pipe(jscs())
 	.pipe(jscs.reporter())
 	.pipe(jshint())
+	.pipe(jshint.reporter('default'))
 	.pipe(jshint.reporter('fail'))
-	.pipe(gulp.dest(distPath.js));
+	.pipe(plumber.stop())
 });
 
 gulp.task('jsLibs', function() {

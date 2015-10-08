@@ -1,5 +1,5 @@
 window.onload = function() {
-	alert('PROUT.');
+	alert('J\'espère que le gulp va marcher!.');
 
 	//fdgfdgfdg
 };
