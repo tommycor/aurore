@@ -1,5 +1,3 @@
-window.onload = function() {
-	alert('J\'espère que le gulp va marcher!.');
+var AppManager = require('./app-manager');
 
-	//fdgfdgfdg
-};
+AppManager.start();
