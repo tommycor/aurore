@@ -12,6 +12,8 @@ var clean = require('gulp-clean');
 var notify = require('gulp-notify');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
+var browserify = require('gulp-browserify');
+var sourcemaps = require('gulp-sourcemaps');
 // var browserSync = require('browser-sync').create();
 // var uglify = require('gulp-uglify');
 // var reload = browserSync.reload;
@@ -25,9 +27,11 @@ var plumber = require('gulp-plumber');
 var sourceDirectory = './app';
 var sourcePath = {
 	scss: sourceDirectory + '/scss/**/*.scss',
-	js: sourceDirectory + '/js/**/*.js',
-	jsLibs: sourceDirectory + '/libs/*.js',
-	other: [ sourceDirectory + '/font/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/index.html' ]
+	// js: sourceDirectory + '/js/**/*.js',
+	js: sourceDirectory + '/js/app.js',
+	jsAll: sourceDirectory + '/js/**/*.js',
+	jsLibs: [ sourceDirectory + '/libs/*.js' ],
+	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/index.html', sourceDirectory + '/js/exp/**' ]
 };
 var distDirectory = './dist';
 var distPath = {
@@ -47,7 +51,8 @@ gulp.task('css', function() {
 	}))
 	.pipe(livereload())
 	.pipe(minify())
-	.pipe(gulp.dest(distPath.css));
+	.pipe(gulp.dest(distPath.css))
+	.pipe(notify('CSS Complete!'));
 });
 
 // Tâche "js" = uglify + concat
@@ -56,16 +61,25 @@ gulp.task('js', function() {
 	.pipe(plumber())
 	.pipe(jscs())
 	.pipe(jscs.reporter())
-	.pipe(jshint())
-	.pipe(jshint.reporter('default'))
-	.pipe(jshint.reporter('fail'))
+	// .pipe(jshint())
+	// .pipe(jshint.reporter('default'))
+	// .pipe(jshint.reporter('fail'))
+	.pipe(sourcemaps.init())
+	.pipe(browserify({
+		insertGlobals: false,
+		debug: true
+	}))
 	.pipe(plumber.stop())
+	.pipe(sourcemaps.write())
+	.pipe(gulp.dest(distPath.js))
+	.pipe(notify('JS Complete!'));
 });
 
 gulp.task('jsLibs', function() {
 	return gulp.src(sourcePath.jsLibs)
 	.pipe(concat('libs.js'))
-	.pipe(gulp.dest(distPath.jsLibs));
+	.pipe(gulp.dest(distPath.jsLibs))
+	.pipe(notify('jsLibs Complete!'));
 });
 
 gulp.task('clean', function(){
@@ -73,40 +87,24 @@ gulp.task('clean', function(){
 	.pipe(clean());
 });
 
-gulp.task('watch', function() {
-	var server = livereload();
-	gulp.watch(sourcePath.scss, ['css']);
-	gulp.watch(sourcePath.js, ['js']);
-	gulp.watch(sourcePath.other, ['copy']);
-	gulp.watch(sourcePath.jsLibs, ['jsLibs']);
-	gulp.watch([sourceDirectory + '/**']).on('change', function() {
-		livereload();
-	});
-	notify({
-		title: 'Changes made',
-		message: 'Reloading browser'
-	});
-});
-
 gulp.task('copy', function() {
 	return gulp.src(sourcePath.other, {
 		base: sourceDirectory
 	})
 	.pipe(gulp.dest(distPath.other));
+	// .pipe(notify('Copy Complete!'));
 });
 
-// // Tâche "watch" = je surveille LESS et HTML
-// gulp.task('watch', function () {
-
-//   browserSync.init({
-//     server: "./app"
-//   });
-
-
-//   gulp.watch(source + '/app/scss/*.scss', ['css']);
-//   gulp.watch(source + '/app/js/*.js', ['js']);
-//   gulp.watch("*.html").on("change", browserSync.reload);
-// });
+gulp.task('watch', function() {
+	var server = livereload();
+	gulp.watch(sourcePath.scss, ['css']);
+	gulp.watch(sourcePath.jsAll, ['js']);
+	gulp.watch(sourcePath.other, ['copy']);
+	gulp.watch(sourcePath.jsLibs, ['jsLibs']);
+	gulp.watch([sourceDirectory + '/**']).on('change', function() {
+		livereload();
+	});
+});
 
 // Default task
 gulp.task('default', ['css', 'js', 'copy', 'jsLibs']);
