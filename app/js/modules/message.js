@@ -1,13 +1,20 @@
-function Message(text) {
+function Message() {
 	
-	this.text = text;
+	this.text = null;
 
 }
 
-Message.prototype.display = function() {
+Message.prototype.setText = function (text) {
 
-	console.log(this.text);
+	this.text = text;
 
 };
 
-module.exports = Message;
+Message.prototype.display = function() {
+
+	if ( typeof this.text !== null )
+		console.log(this.text);
+
+};
+
+module.exports = new Message();

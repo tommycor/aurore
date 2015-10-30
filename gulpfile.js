@@ -28,7 +28,7 @@ var sourceDirectory = './app';
 var sourcePath = {
 	scss: sourceDirectory + '/scss/**/*.scss',
 	// js: sourceDirectory + '/js/**/*.js',
-	js: sourceDirectory + '/js/app.js',
+	js: sourceDirectory + '/js/main.js',
 	jsAll: sourceDirectory + '/js/**/*.js',
 	jsLibs: [ sourceDirectory + '/libs/*.js' ],
 	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/index.html', sourceDirectory + '/js/exp/**' ]

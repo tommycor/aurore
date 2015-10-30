@@ -1,3 +1,6 @@
-var AppManager = require('./app-manager');
+var message = require('./modules/Message');
+var eventManager = require('./modules/EventManager');
 
-AppManager.start();
+message.setText('Resize!');
+
+// message.display();
