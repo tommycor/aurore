@@ -30,8 +30,8 @@ var sourcePath = {
 	// js: sourceDirectory + '/js/**/*.js',
 	js: sourceDirectory + '/js/main.js',
 	jsAll: sourceDirectory + '/js/**/*.js',
-	jsLibs: [ sourceDirectory + '/libs/*.js' ],
-	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/index.html', sourceDirectory + '/js/exp/**' ]
+	jsLibs: [ sourceDirectory + '/libs/three.js', sourceDirectory + '/libs/*.js' ],
+	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/*.html', sourceDirectory + '/models/**' ]
 };
 var distDirectory = './dist';
 var distPath = {

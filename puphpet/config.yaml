@@ -3,14 +3,14 @@ vagrantfile:
     vm:
         box: puphpet/ubuntu1404-x64
         box_url: puphpet/ubuntu1404-x64
-        hostname: aurore
+        hostname: auroreVM
         memory: '512'
         cpus: '1'
         chosen_provider: virtualbox
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                vflnp_wl0vib41zfqk:
+                vflnp_p1ydrvskputg:
                     host: '5622'
                     guest: '22'
         post_up_message: ''
@@ -33,7 +33,7 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            vflsf_d2vkja1gy47q:
+            vflsf_qujepd38znjn:
                 source: ./
                 target: /var/www/local.dev
                 sync_type: default
@@ -89,14 +89,14 @@ cron:
     install: '1'
     jobs: {  }
 nginx:
-    install: '0'
+    install: '1'
     settings:
         default_vhost: 1
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        nxv_p9d16lm7uboq:
+        nxv_rod7cs461f15:
             server_name: local.dev
             server_aliases:
                 - www.local.dev
@@ -116,7 +116,7 @@ nginx:
             rewrite_to_https: '1'
             spdy: '1'
             locations:
-                nxvl_39jbuzsw3ypz:
+                nxvl_q2h0n02b11rm:
                     location: /
                     autoindex: 'off'
                     internal: 'false'
@@ -127,7 +127,7 @@ nginx:
                     fastcgi: ''
                     fastcgi_index: ''
                     fastcgi_split_path: ''
-                nxvl_ego4c8ov9u8s:
+                nxvl_lbe2896ma8v6:
                     location: '~ \.php$'
                     autoindex: 'off'
                     internal: 'false'
@@ -143,7 +143,7 @@ nginx:
                         - 'APP_ENV dev'
     proxies: {  }
 apache:
-    install: '1'
+    install: '0'
     settings:
         user: www-data
         group: www-data
@@ -155,7 +155,7 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_h5xklu5suczn:
+        av_enjsnu7865n5:
             servername: local.dev
             docroot: /var/www/local.dev
             port: '80'
@@ -170,7 +170,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_jsc3n48g0vta:
+                avd_he6nxa8waphu:
                     path: /var/www/local.dev
                     options:
                         - Indexes
@@ -182,7 +182,7 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_ahv36y70xc1r:
+                        avdfm_2z73hn3p9mq9:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
@@ -207,7 +207,7 @@ php:
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
-        phpfp_2ust3lh0h37b:
+        phpfp_5vs59mom49b2:
             ini:
                 prefix: www
                 listen: '127.0.0.1:9000'
@@ -217,7 +217,7 @@ php:
     composer: '1'
     composer_home: ''
 xdebug:
-    install: '1'
+    install: '0'
     settings:
         xdebug.default_enable: '1'
         xdebug.remote_autostart: '0'
@@ -290,15 +290,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_8r548nr7q31a:
+        mariadbnu_fbaqfmck32mf:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_putcmtmmdunq:
+        mariadbnd_2anksjtwd541:
             name: dbname
             sql: ''
     grants:
-        mariadbng_phn209v9727u:
+        mariadbng_8gjcmdwz4cp1:
             user: dbuser
             table: '*.*'
             privileges:
@@ -367,3 +367,4 @@ solr:
     settings:
         version: 4.10.2
         port: '8984'
+
