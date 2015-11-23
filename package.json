@@ -12,7 +12,11 @@
   },
   "author": "Tommy Cornilleau",
   "license": "BSD-2-Clause",
+  "dependencies": {
+    "component-emitter": "^1.2.0"
+  },
   "devDependencies": {
+    "browser-sync": "^2.10.0",
     "gulp": "~3.9.0",
     "gulp-autoprefixer": "~3.0.2",
     "gulp-browserify": "^0.5.1",

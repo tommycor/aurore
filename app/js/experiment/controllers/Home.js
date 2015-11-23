@@ -1,4 +1,4 @@
-var WholeHouse = require('../creators/WholeHouse');
+var $wholeHouse = require('../creators/WholeHouse');
 
 function Home() {
 
@@ -14,13 +14,16 @@ function Home() {
 		x: 0,
 		y: 0,
 		z: 0
-	}
+	};
+
+	console.log('Initialazing draw!');
+}
+
+Home.prototype.init = function() {
 
 	this.draw();
 	this.addListeners();
-
-	console.log("Initialazing draw!");
-}
+};
 
 Home.prototype.draw = function() {
 
@@ -71,12 +74,12 @@ Home.prototype.render = function(){
 };
 
 Home.prototype.createObjects = function(){
-	this.wholeHouse = new WholeHouse();
+	$wholeHouse.init();
 };
 
 Home.prototype.addObjects = function(){
-	console.log(this.wholeHouse.house.mesh);
-	this.scene.add(this.wholeHouse.house.mesh);
+	console.log($wholeHouse.house.mesh);
+	this.scene.add($wholeHouse.house.mesh);
 };
 
 
@@ -129,7 +132,7 @@ Home.prototype.addStatsObject = function(){
 	document.body.appendChild(this.stats.domElement);
 };
 
-Home.prototype.consoleBitch = function(event){
+Home.prototype.consoleBitch = function(event) {
 	console.log('consoleBitch');
 };
 
@@ -138,4 +141,4 @@ Home.prototype.addListeners = function(){
 	window.addEventListener('WholeHouse', this.addObjects, false);
 };
 
-module.exports = Home;
+module.exports = new Home();

@@ -1,4 +1,4 @@
-var Home = require('./controllers/Home');
+var $home = require('./controllers/Home');
 
 function Experiment() {
 
@@ -16,7 +16,7 @@ Experiment.prototype.router = function() {
 	
 	switch(this.hash) {
 	case 'home':
-		var home = new Home();
+		$home.init();
 		break;
 	default:
 		location.hash = 'home';

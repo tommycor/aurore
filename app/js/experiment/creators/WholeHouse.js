@@ -1,4 +1,4 @@
-var House = require('../meshes/House');
+var $house = require('../meshes/House');
 
 function WholeHouse() {
 
@@ -7,12 +7,15 @@ function WholeHouse() {
 	this.createHouse = this.createHouse.bind(this);
 
 	window.addEventListener('build', this.createHouse, false);
-
-	this.house = new House();
 }
 
-WholeHouse.prototype.createHouse = function(){
+WholeHouse.prototype.init = function() {
+
+	$house.init();
+};
+
+WholeHouse.prototype.createHouse = function() {
 	window.dispatchEvent(this.event);
 };
 
-module.exports = WholeHouse;
+module.exports = new WholeHouse();
