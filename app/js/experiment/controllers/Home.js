@@ -1,4 +1,5 @@
 var $wholeHouse = require('../creators/WholeHouse');
+var Emitter = require('../emitter/EventEmitter');
 
 function Home() {
 
@@ -60,7 +61,6 @@ Home.prototype.draw = function() {
 	this.createObjects();
 
 	this.render();
-
 	this.container.appendChild(this.renderer.domElement);
 };
 
@@ -78,8 +78,8 @@ Home.prototype.createObjects = function(){
 };
 
 Home.prototype.addObjects = function(){
-	console.log($wholeHouse.house.mesh);
-	this.scene.add($wholeHouse.house.mesh);
+	console.log('Loaded');
+	this.scene.add($wholeHouse.getWholeHouse());
 };
 
 
@@ -138,7 +138,7 @@ Home.prototype.consoleBitch = function(event) {
 
 Home.prototype.addListeners = function(){
 	// this.container.addEventListener('click', this.consoleBitch, false);
-	window.addEventListener('WholeHouse', this.addObjects, false);
+	Emitter.on('event:creator:wholeHouse', this.addObjects);
 };
 
 module.exports = new Home();

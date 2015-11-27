@@ -1,4 +1,4 @@
-var $wholeHouse = require('../creators/WholeHouse');
+var Emitter = require('../emitter/EventEmitter');
 
 function House(){
 
@@ -26,8 +26,11 @@ House.prototype.createObject = function(geometry){
 	this.mesh.position.y = -100;
 	this.mesh.scale.set(0.5,0.5,0.5);
 
-	console.log($wholeHouse);
-	// $wholeHouse.createHouse();
+	Emitter.emit('event:mesh:house');
 };
+
+House.prototype.getHouse = function() {
+	return this.mesh;
+}
 
 module.exports = new House();

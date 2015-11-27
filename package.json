@@ -13,7 +13,8 @@
   "author": "Tommy Cornilleau",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "component-emitter": "^1.2.0"
+    "component-emitter": "^1.2.0",
+    "wolfy87-eventemitter": "^4.3.0"
   },
   "devDependencies": {
     "browser-sync": "^2.10.0",
