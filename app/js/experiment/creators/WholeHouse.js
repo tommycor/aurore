@@ -1,5 +1,5 @@
 var $house = require('../meshes/House');
-var Emitter = require('../emitter/EventEmitter');
+var Emitter = require('../utils/EventEmitter');
 
 
 function WholeHouse() {

@@ -1,4 +1,4 @@
-var Emitter = require('../emitter/EventEmitter');
+var Emitter = require('../utils/EventEmitter');
 
 function House(){
 

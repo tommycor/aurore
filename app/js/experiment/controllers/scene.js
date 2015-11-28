@@ -29,10 +29,10 @@ Scene.prototype.draw = function() {
 	this.scene = new THREE.Scene();
 
 	this.camera = new THREE.PerspectiveCamera(45, this.ratio, 0.1, 20000);
-	this.camera.position.z = -200;
+
 	// this.camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 10000);
 
-	this.orbit = new THREE.OrbitControls(this.camera);
+	// this.orbit = new THREE.OrbitControls(this.camera);
 
 	////RENDERER
 	this.renderer = new THREE.WebGLRenderer();
@@ -62,12 +62,12 @@ Scene.prototype.draw = function() {
 
 Scene.prototype.render = function(){
 
-	this.orbit.update();
+	// this.orbit.update();
 
 	this.stats.update();
 	this.renderer.render(this.scene, this.camera);
 
-	requestAnimationFrame(this.render);
+	// requestAnimationFrame(this.render);
 
 };
 
@@ -95,7 +95,7 @@ Scene.prototype.addControlGui = function(controlObject){
 	//	this.Z = 2300;
 	//};
 
-	//var gui = new dat.GUI();
+	this.gui = new dat.GUI();
 
 	//gui.add(this.control, 'mt_0', 0, 1).step(0.01).listen().onChange(function (a) {
 	//	_this.mesh.morphTargetInfluences[0] = a;

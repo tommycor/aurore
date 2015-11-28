@@ -1,7 +1,11 @@
 var $scene = require('./scene');
 
+var $camControls = require('../actions/camControls');
+
 var $wholeHouse = require('../creators/WholeHouse');
-var Emitter = require('../emitter/EventEmitter');
+
+var Emitter = require('../utils/EventEmitter');
+var raf = require('../utils/raf');
 
 function Home(){
 }
@@ -10,7 +14,10 @@ Home.prototype.init = function() {
 	this.addListeners();
 
 	$scene.init();
-	this.createObjects();	
+
+	$camControls.init($scene.camera, $scene.gui);
+
+	this.createObjects();
 };
 
 Home.prototype.createObjects = function() {
@@ -20,6 +27,8 @@ Home.prototype.createObjects = function() {
 Home.prototype.addObjects = function() {
 	console.log('Loaded');
 	$scene.scene.add($wholeHouse.getWholeHouse());
+
+	raf.start();
 };
 
 

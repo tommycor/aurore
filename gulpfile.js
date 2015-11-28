@@ -14,8 +14,8 @@ var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var browserify = require('gulp-browserify');
 var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
 // var browserSync = require('browser-sync').create();
-// var uglify = require('gulp-uglify');
 // var reload = browserSync.reload;
 
 // var gulpsync = require('gulp-sync')(gulp);
@@ -78,6 +78,7 @@ gulp.task('js', function() {
 gulp.task('jsLibs', function() {
 	return gulp.src(sourcePath.jsLibs)
 	.pipe(concat('libs.js'))
+	.pipe(uglify())
 	.pipe(gulp.dest(distPath.jsLibs))
 	.pipe(notify('jsLibs Complete!'));
 });
