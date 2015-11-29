@@ -28,7 +28,7 @@ Scene.prototype.draw = function() {
 	//// INIT
 	this.scene = new THREE.Scene();
 
-	this.camera = new THREE.PerspectiveCamera(45, this.ratio, 0.1, 20000);
+	this.camera = new THREE.PerspectiveCamera(55, this.ratio, 0.1, 20000);
 
 	// this.camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 10000);
 
@@ -85,21 +85,18 @@ Scene.prototype.addStatsObject = function(){
 
 Scene.prototype.addControlGui = function(controlObject){
 
-	// var _this = this;
+	var _this = this;
 
 	// this.control = new function () {
-	//	this.mt_0 = 0.7;
-	//	this.mt_1 = 0.7;
-	//	this.X = 0;
-	//	this.Y = _this.camY;
-	//	this.Z = 2300;
-	//};
+	// 	this.camFOV = 45;
+	// };
 
-	this.gui = new dat.GUI();
+	gui = new dat.GUI();
 
-	//gui.add(this.control, 'mt_0', 0, 1).step(0.01).listen().onChange(function (a) {
-	//	_this.mesh.morphTargetInfluences[0] = a;
-	//});
+	// gui.add(this.control, 'camFOV', 30, 60).step(1).listen().onChange(function (a) {
+	// 	_this.camera.fov = a;
+	// 	_this.camera.updateProjectionMatrix();
+	// });
 	//gui.add(this.control, 'mt_1', 0, 1).step(0.01).listen().onChange(function (a) {
 	//	_this.mesh.morphTargetInfluences[1] = a;
 	//});

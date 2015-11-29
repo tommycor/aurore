@@ -9,15 +9,15 @@ CamControls.prototype.init = function( camera, gui ) {
 
     this.clock = new THREE.Clock();
 
-    this.camera.position.x = 100;
-    this.camera.position.y = 10;
-    this.camera.position.z = 10;
+    this.camera.position.x = 0;
+    this.camera.position.y = 0;
+    this.camera.position.z = 0;
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 
 
     this.controls = new THREE.FirstPersonControls(camera);
-    this.controls.lookSpeed = 0.07;
+    this.controls.lookSpeed = 0.1;
     this.controls.movementSpeed = 50;
     this.controls.noFly = true;
     this.controls.lookVertical = true;

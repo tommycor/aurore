@@ -168,10 +168,10 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		switch ( event.keyCode ) {
 
 			case 38: /*up*/
-			case 87: /*W*/ this.moveForward = true; break;
+			case 90: /*W*/ this.moveForward = true; break;
 
 			case 37: /*left*/
-			case 65: /*A*/ this.moveLeft = true; break;
+			case 81: /*A*/ this.moveLeft = true; break;
 
 			case 40: /*down*/
 			case 83: /*S*/ this.moveBackward = true; break;
@@ -191,10 +191,10 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		switch ( event.keyCode ) {
 
 			case 38: /*up*/
-			case 87: /*W*/ this.moveForward = false; break;
+			case 90: /*W*/ this.moveForward = false; break;
 
 			case 37: /*left*/
-			case 65: /*A*/ this.moveLeft = false; break;
+			case 81: /*A*/ this.moveLeft = false; break;
 
 			case 40: /*down*/
 			case 83: /*S*/ this.moveBackward = false; break;
@@ -268,10 +268,10 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		}
 
 		var targetPosition = this.target,
-			position = this.object.position;
+		position = this.object.position;
 
 		targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
-		targetPosition.y = position.y + 100 * Math.cos( this.phi );
+		targetPosition.y = position.y + Math.cos( this.phi );
 		targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
 
 		this.object.lookAt( targetPosition );
