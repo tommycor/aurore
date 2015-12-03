@@ -28,7 +28,7 @@ Scene.prototype.draw = function() {
 	//// INIT
 	this.scene = new THREE.Scene();
 
-	this.camera = new THREE.PerspectiveCamera(55, this.ratio, 0.1, 20000);
+	this.camera = new THREE.PerspectiveCamera(60, this.ratio, 0.1, 20000);
 
 	// this.camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 10000);
 

@@ -15,7 +15,7 @@ Home.prototype.init = function() {
 
 	$scene.init();
 
-	$camControls.init($scene.camera, $scene.gui);
+
 
 	this.createObjects();
 };
@@ -26,7 +26,24 @@ Home.prototype.createObjects = function() {
 
 Home.prototype.addObjects = function() {
 	console.log('Loaded');
-	$scene.scene.add($wholeHouse.getWholeHouse());
+
+	var obstacle;
+
+	this.children = $wholeHouse.getMeshes();
+
+	console.log(this.children);
+
+	// $scene.scene.add(this.children[1]);
+	for( var i = 0 ; i < this.children.length ; i++ ) {
+
+		$scene.scene.add(this.children[i]);
+
+	}
+
+	obstacle = $scene.scene.getObjectByName('HouseMin');
+	console.log($scene.scene);
+
+	$camControls.init($scene.camera, $scene.gui, obstacle);
 
 	raf.start();
 };

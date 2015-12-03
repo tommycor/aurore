@@ -133,7 +133,6 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 				this.mouseY = 0;
 			}
 
-
 		} else {
 
 			if ( this.getDist(event) > 100 ){
@@ -144,7 +143,6 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 				this.mouseX = 0;
 				this.mouseY = 0;
 			}
-
 
 		}
 
@@ -271,7 +269,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		position = this.object.position;
 
 		targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
-		targetPosition.y = position.y + Math.cos( this.phi );
+		targetPosition.y = position.y;
 		targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
 
 		this.object.lookAt( targetPosition );
@@ -304,7 +302,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 	this.domElement.addEventListener( 'contextmenu', contextmenu, false );
 	this.domElement.addEventListener( 'mousemove', _onMouseMove, false );
-	this.domElement.addEventListener( 'mousedown', _onMouseDown, false );
+	// this.domElement.addEventListener( 'mousedown', _onMouseDown, false );
 	this.domElement.addEventListener( 'mouseup', _onMouseUp, false );
 
 	window.addEventListener( 'keydown', _onKeyDown, false );

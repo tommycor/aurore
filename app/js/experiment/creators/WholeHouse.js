@@ -1,20 +1,24 @@
 var $house = require('../meshes/House');
+var $min = require('../meshes/min');
 var Emitter = require('../utils/EventEmitter');
 
 
 function WholeHouse() {
 
-	this.elements = [$house];
+	this.elements = [$house, $min];
 	this.totalElements = this.elements.length;
 	this.createdElements = 0;
 	
 	this.createHouse = this.createHouse.bind(this);
 
 	Emitter.on('event:mesh:house', this.createHouse);
+	Emitter.on('event:mesh:min', this.createHouse);
 }
 
 WholeHouse.prototype.init = function() {
-	$house.init();
+	for( var i = 0 ; i < this.totalElements ; i++ ) {
+		this.elements[i].init();
+	}
 };
 
 WholeHouse.prototype.createHouse = function() {
@@ -25,11 +29,17 @@ WholeHouse.prototype.createHouse = function() {
 };
 
 WholeHouse.prototype.built = function() {
+	this.children = [];
+
+	for( var i = 0 ; i < this.totalElements ; i ++ ) {
+		this.children[i] = this.elements[i].getMesh();
+	}
+
 	Emitter.emit('event:creator:wholeHouse');
 };
 
-WholeHouse.prototype.getWholeHouse = function() {
-	return $house.getHouse();
+WholeHouse.prototype.getMeshes = function() {
+	return this.children;
 };
 
 module.exports = new WholeHouse();
