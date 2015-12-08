@@ -2,7 +2,7 @@ var Emitter = require('../utils/EventEmitter');
 
 function House(){
 
-	this.url = './models/house/batiment_bepos_test--rescale.json';
+	this.url = './models/house/house.json';
 	// this.url = './models/house/House_model-v2.json';
 	
 	this.createMesh = this.createMesh.bind(this);

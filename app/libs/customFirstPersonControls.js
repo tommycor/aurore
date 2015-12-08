@@ -45,6 +45,11 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.moveLeft = false;
 	this.moveRight = false;
 
+	this.canMoveForward = true;
+	this.canMoveBackward = true;
+	this.canMoveLeft = true;
+	this.canMoveRight = true;
+
 	this.mouseDragOn = false;
 
 	this.viewHalfX = 0;
@@ -226,11 +231,11 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		var actualMoveSpeed = delta * this.movementSpeed;
 
-		if ( this.moveForward || ( this.autoForward && ! this.moveBackward ) ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) );
-		if ( this.moveBackward ) this.object.translateZ( actualMoveSpeed );
+		if ( ( this.moveForward && this.canMoveForward ) || ( this.autoForward && this.canMoveForward && ! this.moveBackward ) ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) );
+		if ( this.moveBackward && this.canMoveBackward ) this.object.translateZ( actualMoveSpeed );
 
-		if ( this.moveLeft ) this.object.translateX( - actualMoveSpeed );
-		if ( this.moveRight ) this.object.translateX( actualMoveSpeed );
+		if ( this.moveLeft && this.canMoveLeft ) this.object.translateX( - actualMoveSpeed );
+		if ( this.moveRight && this.canMoveRight ) this.object.translateX( actualMoveSpeed );
 
 		if ( this.moveUp ) this.object.translateY( actualMoveSpeed );
 		if ( this.moveDown ) this.object.translateY( - actualMoveSpeed );

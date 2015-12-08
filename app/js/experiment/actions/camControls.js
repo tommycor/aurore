@@ -4,7 +4,7 @@ function CamControls(){
 }
 
 CamControls.prototype.init = function( camera, gui, obstacle ) {
-	this.rayCastFront = this.rayCastFront.bind(this);
+	this.consoleMeAThing = this.consoleMeAThing.bind(this);
 
 	this.camera = camera;
 	this.obstacle = [obstacle];
@@ -28,19 +28,19 @@ CamControls.prototype.init = function( camera, gui, obstacle ) {
 	this.controls.lon = -150;
 	this.controls.lat = 120;
 
-	this.rays = [
-		new THREE.Vector3(0, 0, 1),
-		new THREE.Vector3(1, 0, 0),
-		new THREE.Vector3(0, 0, -1),
-		new THREE.Vector3(-1, 0, 0)
-	];
-	this.raybottom = new THREE.Vector3(0,-1,0);
+	this.rayBottom = new THREE.Vector3(0,-1,0);
+
+	this.frontRay = new THREE.Vector3(0, 0, 0);
+	this.leftRay = new THREE.Vector3(0, 0, 0);
+	this.rightRay = new THREE.Vector3(0, 0, 0);
+	this.backRay = new THREE.Vector3(0, 0, 0);
+
 	this.caster = new THREE.Raycaster();
+	this.distHorizontal = 15;
+	this.distMinBottom = 140;
+	this.distMaxBottom = 150;
 
-	this.distFront = 15;
-	this.distBottom = 50;
-
-	window.addEventListener('click', this.rayCastFront);
+	window.addEventListener('click', this.consoleMeAThing);
 
 };
 
@@ -50,28 +50,89 @@ CamControls.prototype.render = function() {
 
 	this.controls.update(delta);
 
-	
-	for (var v = 0 ; v < this.rays.length ; v++ ) {
+	this.getCollisions();
+	this.getHeight();
+};
 
-		this.caster.set(this.camera.position, this.rays[v]);
+CamControls.prototype.getCollisions = function() {
 
-		this.collisions = this.caster.intersectObjects(this.obstacle, false);
+	this.frontRay.subVectors(this.controls.target, this.camera.position);
+	this.frontRay.normalize();
 
-		for( var i = 0 ; i < this.collisions.length ; i++ ) {
+	this.backRay.x = - this.frontRay.x;
+	this.backRay.z = - this.frontRay.z;
+	this.rightRay.x = - this.frontRay.z;
+	this.rightRay.z = this.frontRay.x;
+	this.leftRay.x = - this.rightRay.x;
+	this.leftRay.z = - this.rightRay.z;
 
-			if (this.collisions[i].distance < this.distFront)
-				console.log(this.collisions[i].distance);
-		}
+	if( this.getWall(this.frontRay, this.distHorizontal) )
+		this.controls.canMoveForward = false;
+	else
+		this.controls.canMoveForward = true;		
 
-	}
+	if( this.getWall(this.backRay, this.distHorizontal) )
+		this.controls.canMoveBackward = false;
+	else
+		this.controls.canMoveBackward = true;	
+
+	if( this.getWall(this.leftRay, this.distHorizontal) )
+		this.controls.canMoveLeft = false;
+	else
+		this.controls.canMoveLeft = true;	
+
+	if( this.getWall(this.rightRay, this.distHorizontal) )
+		this.controls.canMoveRight = false;
+	else
+		this.controls.canMoveRight = true;	
 
 };
 
-CamControls.prototype.rayCastFront = function() {
+CamControls.prototype.getHeight = function() {
 
-	this.rayfront = new THREE.Vector3( this.controls.target.x - this.camera.position.x , this.controls.target.y - this.camera.position.y , this.controls.target.z - this.camera.position.z );
+	this.caster.set(this.camera.position, this.rayBottom);
+	var collisions = this.caster.intersectObjects(this.obstacle, false);
+
+	// just test collision[0]: it's the closest object captured by the raycast and it's better for performances
+	// IF CLIMB
+	if ( collisions[0].distance < this.distMinBottom ) {
+		this.controls.moveUp = true;
+		this.controls.moveDown = false;
+	}
+	// IF FALL
+	else if ( collisions[0].distance > this.distMaxBottom ) {
+		this.controls.moveDown = true;
+		this.controls.moveUp = false;
+	}
+	// IF NORMAL WALK
+	else{
+		this.controls.moveUp = false;
+		this.controls.moveDown = false;
+	}
 
 
+
+};
+
+CamControls.prototype.getWall = function(ray, minDist) {
+
+	this.caster.set(this.camera.position, ray);
+	var collisions = this.caster.intersectObjects(this.obstacle, false);
+
+	for( var i = 0 ; i < collisions.length ; i++ ) {
+		if ( collisions[i].distance < minDist ) {
+			return true;
+		}
+		else{	
+			return false;
+		}
+	}
+};
+
+CamControls.prototype.consoleMeAThing = function() {
+
+	// if (typeof collisions !== 'undefined')
+	// console.log(this.collisions);
 };
 
 module.exports = new CamControls();
