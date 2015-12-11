@@ -1,7 +1,10 @@
+var Emitter = require('../utils/EventEmitter');
+
 function Scene() {
 
 	this.render = this.render.bind(this);
 	this.consoleBitch = this.consoleBitch.bind(this);
+	this.resize = this.resize.bind(this);
 	
 	this.container = document.getElementById('exp');
 
@@ -14,6 +17,8 @@ function Scene() {
 	};
 
 	console.log('Initialazing draw!');
+
+	Emitter.on('utils:events:resize', this.resize);
 }
 
 Scene.prototype.init = function() {
@@ -112,6 +117,16 @@ Scene.prototype.addControlGui = function(controlObject){
 	//	_this.camera.position.z = a;
 	//	_this.camera.lookAt( _this.lookAtPosition );
 	//});
+};
+
+Scene.prototype.resize = function() {
+
+	this.ratio = window.innerWidth / window.innerHeight;
+
+    this.camera.aspect = this.ratio;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+
 };
 
 Scene.prototype.consoleBitch = function(event) {

@@ -7,6 +7,8 @@ var $wholeHouse = require('../creators/WholeHouse');
 var Emitter = require('../utils/EventEmitter');
 var raf = require('../utils/raf');
 
+require('../utils/GlobalEvents');
+
 function Home(){
 }
 

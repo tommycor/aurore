@@ -299,21 +299,22 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 	}
 
-	var _onMouseMove = bind( this, this.onMouseMove );
-	var _onMouseDown = bind( this, this.onMouseDown );
-	var _onMouseUp = bind( this, this.onMouseUp );
-	var _onKeyDown = bind( this, this.onKeyDown );
-	var _onKeyUp = bind( this, this.onKeyUp );
+	var _onMouseMove = binder( this, this.onMouseMove );
+	var _onMouseDown = binder( this, this.onMouseDown );
+	var _onMouseUp = binder( this, this.onMouseUp );
+	var _onKeyDown = binder( this, this.onKeyDown );
+	var _onKeyUp = binder( this, this.onKeyUp );
+	this.handleResize = this.handleResize.bind( this );
 
 	this.domElement.addEventListener( 'contextmenu', contextmenu, false );
 	this.domElement.addEventListener( 'mousemove', _onMouseMove, false );
 	// this.domElement.addEventListener( 'mousedown', _onMouseDown, false );
-	this.domElement.addEventListener( 'mouseup', _onMouseUp, false );
+	// this.domElement.addEventListener( 'mouseup', _onMouseUp, false );
 
 	window.addEventListener( 'keydown', _onKeyDown, false );
 	window.addEventListener( 'keyup', _onKeyUp, false );
 
-	function bind( scope, fn ) {
+	function binder( scope, fn ) {
 
 		return function () {
 
