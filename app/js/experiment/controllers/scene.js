@@ -40,39 +40,71 @@ Scene.prototype.draw = function() {
 	// this.orbit = new THREE.OrbitControls(this.camera);
 
 	////RENDERER
-	this.renderer = new THREE.WebGLRenderer();
+	this.renderer = new THREE.WebGLRenderer({ antialias: true });
 	this.renderer.setClearColor(0x000000, 1.0);
 	this.renderer.setSize(window.innerWidth, window.innerHeight);
 	this.renderer.shadowMapEnabled = true;
 
 	//// AMBIANT LIGHT
-	this.ambient = new THREE.AmbientLight( 0x111111 );
+	this.ambient = new THREE.AmbientLight( 0x444444 );
 	this.scene.add(this.ambient);
 
     //// SPOTLIGHT
     this.spotLight = new THREE.SpotLight(0xffffff);
-    this.spotLight.position.set(10, 500, 20);
+    this.spotLight.position.set(10, 1000, 20);
     this.spotLight.shadowCameraNear = 20;
-    this.spotLight.shadowCameraFar = 1000;
+    this.spotLight.intensity = 2;
+    this.spotLight.shadowCameraFar = 10000;
+    this.spotLight.angle = Math.PI/2;
     this.scene.add(this.spotLight);
 
 	this.addControlGui();
 
 	this.addStatsObject();
 
-	this.render();
+	this.composer = new THREE.EffectComposer( this.renderer );
+	this.composer.addPass( new THREE.RenderPass( this.scene, this.camera ) );
+
+	this.depthShader = THREE.ShaderLib[ "depthRGBA" ];
+	this.depthUniforms = THREE.UniformsUtils.clone( this.depthShader.uniforms );
+
+	this.depthMaterial = new THREE.ShaderMaterial( {
+		fragmentShader: this.depthShader.fragmentShader,
+		vertexShader: this.depthShader.vertexShader,
+		uniforms: this.depthUniforms
+	} );
+	this.depthMaterial.blending = THREE.NoBlending;
+
+
+	this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
+
+
+	this.effect = new THREE.ShaderPass( THREE.SSAOShader );
+	this.effect.uniforms[ 'tDepth' ].value = this.depthTarget;
+	this.effect.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
+	this.effect.uniforms[ 'cameraNear' ].value = this.camera.near;
+	this.effect.uniforms[ 'cameraFar' ].value = this.camera.far;
+	this.effect.renderToScreen = true;
+	this.composer.addPass( this.effect );
+
+
+	Emitter.emit('event:scene:ready');
 	this.container.appendChild(this.renderer.domElement);
+
 
 };
 
 Scene.prototype.render = function(){
 
-	// this.orbit.update();
-
 	this.stats.update();
-	this.renderer.render(this.scene, this.camera);
+	// this.renderer.render(this.scene, this.camera);
 
-	// requestAnimationFrame(this.render);
+	this.scene.overrideMaterial = this.depthMaterial;
+    this.renderer.render( this.scene, this.camera, this.depthTarget );
+
+
+    this.scene.overrideMaterial = null;
+    this.composer.render(0.01);
 
 };
 

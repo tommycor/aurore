@@ -30,7 +30,7 @@ var sourcePath = {
 	// js: sourceDirectory + '/js/**/*.js',
 	js: sourceDirectory + '/js/main.js',
 	jsAll: sourceDirectory + '/js/**/*.js',
-	jsLibs: [ sourceDirectory + '/libs/three.js', sourceDirectory + '/libs/*.js' ],
+	jsLibs: [ sourceDirectory + '/libs/three.js', sourceDirectory + '/libs/EffectComposer.js', sourceDirectory + '/libs/*.js' ],
 	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/*.html', sourceDirectory + '/models/**' ]
 };
 var distDirectory = './dist';
@@ -78,7 +78,7 @@ gulp.task('js', function() {
 gulp.task('jsLibs', function() {
 	return gulp.src(sourcePath.jsLibs)
 	.pipe(concat('libs.js'))
-	.pipe(uglify())
+	// .pipe(uglify())
 	.pipe(gulp.dest(distPath.jsLibs))
 	.pipe(notify('jsLibs Complete!'));
 });

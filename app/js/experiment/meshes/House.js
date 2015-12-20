@@ -19,12 +19,12 @@ House.prototype.createMesh = function(geometry){
 	this.geometry = geometry;
 	this.geometry.computeFaceNormals();
 	this.geometry.computeVertexNormals();
-	this.material = new THREE.MeshNormalMaterial({color: 0x7777ff});
-	// this.material = new THREE.MeshLambertMaterial( {
-	// 	color: 0x2194ce,
-	// 	// wireframe: true,
-	// 	emissive: 0x000000
-	// });
+	// this.material = new THREE.MeshNormalMaterial({color: 0x7777ff, wireframe: false,});
+	this.material = new THREE.MeshLambertMaterial( {
+		color: 0xFFFFFF,
+		// wireframe: true,
+		emissive: 0x000000
+	});
  
 	this.mesh = new THREE.Mesh(this.geometry, this.material);
 	this.mesh.name = 'house';
