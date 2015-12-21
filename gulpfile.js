@@ -15,13 +15,6 @@ var plumber = require('gulp-plumber');
 var browserify = require('gulp-browserify');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-// var browserSync = require('browser-sync').create();
-// var reload = browserSync.reload;
-
-// var gulpsync = require('gulp-sync')(gulp);
-// var uncss = require('gulp-uncss');
-// var rename = require('gulp-rename');
-// var imagemin = require('gulp-imagemin');
 
 // Paths
 var sourceDirectory = './app';
@@ -31,7 +24,7 @@ var sourcePath = {
 	js: sourceDirectory + '/js/main.js',
 	jsAll: sourceDirectory + '/js/**/*.js',
 	jsLibs: [ sourceDirectory + '/libs/three.js', sourceDirectory + '/libs/EffectComposer.js', sourceDirectory + '/libs/*.js' ],
-	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/*.html', sourceDirectory + '/models/**' ]
+	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/*.html', sourceDirectory + '/html/*.html', sourceDirectory + '/models/**' ]
 };
 var distDirectory = './dist';
 var distPath = {
