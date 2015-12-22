@@ -4,6 +4,8 @@ var $camControls = require('../actions/camControls');
 
 var $wholeHouse = require('../creators/WholeHouse');
 
+var $dataModels = require('../utils/DataModels');
+
 var Emitter = require('../utils/EventEmitter');
 var raf = require('../utils/raf');
 
@@ -28,6 +30,8 @@ Home.prototype.createObjects = function() {
 
 Home.prototype.addObjects = function() {
 	console.log('Loaded');
+
+	console.log($dataModels);
 
 	var obstacle;
 
