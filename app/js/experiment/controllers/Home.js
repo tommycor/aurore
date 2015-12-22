@@ -33,8 +33,6 @@ Home.prototype.addObjects = function() {
 
 	this.children = $wholeHouse.getMeshes();
 
-	console.log(this.children);
-
 	// $scene.scene.add(this.children[1]);
 	for( var i = 0 ; i < this.children.length ; i++ ) {
 
@@ -43,7 +41,6 @@ Home.prototype.addObjects = function() {
 	}
 
 	obstacle = $scene.scene.getObjectByName('HouseMin');
-	console.log($scene.scene);
 
 	$camControls.init($scene.camera, $scene.gui, obstacle);
 

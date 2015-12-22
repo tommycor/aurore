@@ -40,7 +40,7 @@ Scene.prototype.draw = function() {
 	// this.orbit = new THREE.OrbitControls(this.camera);
 
 	////RENDERER
-	this.renderer = new THREE.WebGLRenderer({ antialias: true });
+	this.renderer = new THREE.WebGLRenderer();
 	this.renderer.setClearColor(0x000000, 1.0);
 	this.renderer.setSize(window.innerWidth, window.innerHeight);
 	this.renderer.shadowMapEnabled = true;
@@ -65,6 +65,26 @@ Scene.prototype.draw = function() {
 	this.composer = new THREE.EffectComposer( this.renderer );
 	this.composer.addPass( new THREE.RenderPass( this.scene, this.camera ) );
 
+	this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
+
+	this.addFXAA();
+	this.addSSAO();
+
+	this.container.appendChild(this.renderer.domElement);
+
+
+};
+
+Scene.prototype.addFXAA = function() {
+
+	this.fxaa = new THREE.ShaderPass( THREE.FXAAShader );
+	this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth, 1 / window.innerHeight );
+	this.composer.addPass( this.fxaa );
+
+};
+
+Scene.prototype.addSSAO = function() {
+
 	this.depthShader = THREE.ShaderLib[ "depthRGBA" ];
 	this.depthUniforms = THREE.UniformsUtils.clone( this.depthShader.uniforms );
 
@@ -76,7 +96,6 @@ Scene.prototype.draw = function() {
 	this.depthMaterial.blending = THREE.NoBlending;
 
 
-	this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
 
 
 	this.effect = new THREE.ShaderPass( THREE.SSAOShader );
@@ -87,14 +106,9 @@ Scene.prototype.draw = function() {
 	this.effect.renderToScreen = true;
 	this.composer.addPass( this.effect );
 
-
-	Emitter.emit('event:scene:ready');
-	this.container.appendChild(this.renderer.domElement);
-
-
 };
 
-Scene.prototype.render = function(){
+Scene.prototype.render = function() {
 
 	this.stats.update();
 	// this.renderer.render(this.scene, this.camera);
@@ -104,7 +118,7 @@ Scene.prototype.render = function(){
 
 
     this.scene.overrideMaterial = null;
-    this.composer.render(0.01);
+    this.composer.render();
 
 };
 
