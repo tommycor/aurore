@@ -184,4 +184,14 @@ Scene.prototype.consoleBitch = function(event) {
 	console.log('consoleBitch');
 };
 
+module.exports = new Scene();.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
+
+};
+
+Scene.prototype.consoleBitch = function(event) {
+	console.log('consoleBitch');
+};
+
 module.exports = new Scene();
