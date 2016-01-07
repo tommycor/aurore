@@ -63,23 +63,29 @@ Scene.prototype.draw = function() {
 	this.addStatsObject();
 
 	this.composer = new THREE.EffectComposer( this.renderer );
-	this.composer.addPass( new THREE.RenderPass( this.scene, this.camera ) );
 
 	this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
 
 	this.addFXAA();
 	this.addSSAO();
 
+	this.composer.addPass( new THREE.RenderPass( this.scene, this.camera ) );
+	this.composer.addPass( this.ssao );
+	this.composer.addPass( this.fxaa );
+
 	this.container.appendChild(this.renderer.domElement);
-
-
 };
 
 Scene.prototype.addFXAA = function() {
 
+	this.dpr = 1;
+	if (window.devicePixelRatio !== undefined) {
+		this.dpr = window.devicePixelRatio;
+	}
+
 	this.fxaa = new THREE.ShaderPass( THREE.FXAAShader );
-	this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth, 1 / window.innerHeight );
-	this.composer.addPass( this.fxaa );
+	this.fxaa.uniforms.resolution.value.set(1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
+	this.fxaa.renderToScreen = true;
 
 };
 
@@ -95,28 +101,26 @@ Scene.prototype.addSSAO = function() {
 	} );
 	this.depthMaterial.blending = THREE.NoBlending;
 
+	this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
 
+	this.ssao = new THREE.ShaderPass( THREE.SSAOShader );
+	this.ssao.uniforms[ 'tDepth' ].value = this.depthTarget;
+	this.ssao.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
+	this.ssao.uniforms[ 'cameraNear' ].value = this.camera.near;
+	this.ssao.uniforms[ 'cameraFar' ].value = this.camera.far;   
+	this.ssao.uniforms[ 'onlyAO' ].value = false;
+	this.ssao.uniforms[ 'aoClamp' ].value = 0.5;
+	this.ssao.renderToScreen = false;
 
-
-	this.effect = new THREE.ShaderPass( THREE.SSAOShader );
-	this.effect.uniforms[ 'tDepth' ].value = this.depthTarget;
-	this.effect.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
-	this.effect.uniforms[ 'cameraNear' ].value = this.camera.near;
-	this.effect.uniforms[ 'cameraFar' ].value = this.camera.far;
-	this.effect.renderToScreen = true;
-	this.composer.addPass( this.effect );
 
 };
 
 Scene.prototype.render = function() {
 
 	this.stats.update();
-	// this.renderer.render(this.scene, this.camera);
 
 	this.scene.overrideMaterial = this.depthMaterial;
-    this.renderer.render( this.scene, this.camera, this.depthTarget );
-
-
+    this.renderer.render( this.scene, this.camera, this.depthTarget, true );
     this.scene.overrideMaterial = null;
     this.composer.render();
 
@@ -172,6 +176,7 @@ Scene.prototype.resize = function() {
     this.camera.aspect = this.ratio;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
 
 };
 

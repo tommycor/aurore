@@ -2,7 +2,7 @@ var Emitter = require('../utils/EventEmitter');
 
 function HouseMin(){
 
-	this.url = './models/house/mini.json';
+	this.url = './models/house/mini__2.json';
 	
 	this.createMesh = this.createMesh.bind(this);
 }
