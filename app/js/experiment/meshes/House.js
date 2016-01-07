@@ -19,16 +19,15 @@ House.prototype.createMesh = function(geometry){
 	this.geometry = geometry;
 	this.geometry.computeFaceNormals();
 	this.geometry.computeVertexNormals();
-	// this.material = new THREE.MeshNormalMaterial({color: 0x7777ff, wireframe: false,});
+	// this.material = new THREE.MeshNormalMaterial({color: 0xFFDA0D, wireframe: false,});
 	this.material = new THREE.MeshLambertMaterial( {
-		color: 0xFFFFFF,
+		color: 0xFFDA0D,
 		// wireframe: true,
-		emissive: 0x000000
+		emissive: 0xD25D07
 	});
  
 	this.mesh = new THREE.Mesh(this.geometry, this.material);
 	this.mesh.name = 'house';
-	// this.mesh.scale.set(0.5,0.5,0.5);
 
 	Emitter.emit('event:mesh:house');
 };
