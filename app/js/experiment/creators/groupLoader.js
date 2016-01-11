@@ -36,26 +36,34 @@ groupLoader.prototype.createMeshes = function(geometries) {
 		data = this.modelsData[ i ];
 
 		switch(data.material) {
-			case 'MeshLambertMaterial':
-				material = new THREE.MeshLambertMaterial( {
-					color: data.color,
-					wireframe: data.wireframe,
-					emissive: data.emissive
-				});
-				break;
-			case 'MeshNormalMaterial':
-				material = new THREE.MeshNormalMaterial( {
-					color: data.color,
-					wireframe: data.wireframe,
-					emissive: data.emissive
-				});
-				break;
-			default:
-				material = new THREE.MeshLambertMaterial( {
-					color: data.color,
-					wireframe: data.wireframe,
-					emissive: data.emissive
-				});
+		case 'MeshLambertMaterial':
+			material = new THREE.MeshLambertMaterial( {
+				color: data.color,
+				wireframe: data.wireframe,
+				emissive: data.emissive
+			});
+			break;
+		case 'MeshNormalMaterial':
+			material = new THREE.MeshNormalMaterial( {
+				color: data.color,
+				wireframe: data.wireframe,
+				emissive: data.emissive
+			});
+			break;
+		case 'MeshPhongMaterial':
+			material = new THREE.MeshPhongMaterial( {
+				color: data.color,
+				wireframe: data.wireframe,
+				emissive: data.emissive,
+				specular: data.specular
+			});
+			break;
+		default:
+			material = new THREE.MeshLambertMaterial( {
+				color: data.color,
+				wireframe: data.wireframe,
+				emissive: data.emissive
+			});
 		}
 
 		mesh = new THREE.Mesh(geometry, material);

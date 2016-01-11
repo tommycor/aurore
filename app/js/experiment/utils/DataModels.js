@@ -10,10 +10,11 @@ var dataModels = {
 		{
 			name: 'WholeHouse',
 			modelURL: 'house/house.json',
-			material: 'MeshLambertMaterial',
+			material: 'MeshPhongMaterial',
 			textureURL: '',
 			color: 0xBDBDBD,
 			emissive: 0x484848,
+			specular: 0xFF0000,
 			wireframe: false,
 			visible: true,
 			group: 'house',
