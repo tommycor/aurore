@@ -39,7 +39,7 @@ CamControls.prototype.init = function( camera, gui, obstacle ) {
 
 	this.caster = new THREE.Raycaster();
 	this.distHorizontal = 15;
-	this.distMinBottom = 120;
+	this.distMinBottom = 100;
 	this.distMaxBottom = this.distMinBottom + 10;
 
 	window.addEventListener('click', this.consoleMeAThing);

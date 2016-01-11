@@ -10,44 +10,50 @@ var dataModels = {
 		{
 			name: 'WholeHouse',
 			modelURL: 'house/house.json',
+			material: 'MeshLambertMaterial',
 			textureURL: '',
-			couleur: 0xBDBDBD,
+			color: 0xBDBDBD,
 			emissive: 0x484848,
+			wireframe: false,
+			visible: true,
 			group: 'house',
-			pos: {
+			position: {
 				x: 0,
 				y: 0,
 				z: 0
 			},
-			rot: {
+			rotation: {
 				x: 0,
 				y: 0,
 				z: 0
 			},
-			sca: {
+			scale: {
 				x: 1,
 				y: 1,
 				z: 1
 			}
 		},
 		{
-			name: 'minHouse',
+			name: 'HouseMin',
 			modelURL: 'house/mini__2.json',
+			material: 'MeshNormalMaterial',
 			textureURL: '',
-			couleur: 0xBDBDBD,
+			color: 0xBDBDBD,
 			emissive: 0x484848,
+			wireframe: false,
+			visible: false,
 			group: 'house',
-			pos: {
+			position: {
 				x: 0,
 				y: 0,
 				z: 0
 			},
-			rot: {
+			rotation: {
 				x: 0,
 				y: 0,
 				z: 0
 			},
-			sca: {
+			scale: {
 				x: 1,
 				y: 1,
 				z: 1

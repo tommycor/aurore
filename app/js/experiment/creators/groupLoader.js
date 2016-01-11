@@ -13,8 +13,6 @@ function groupLoader(groupName){
 
 	this.promises = this.getPromises();
 
-	console.log(this.promises);
-
 
 }
 
@@ -24,12 +22,60 @@ groupLoader.prototype.load = function() {
 
 };
 
-groupLoader.prototype.loaded = function(results) {
-	console.log(results);
-};
+groupLoader.prototype.createMeshes = function(geometries) {
+	this.meshes = [];
+	
+	var geometry = null;
+	var material = null;
+	var data = null;
+	var mesh = null;
 
-groupLoader.prototype.error = function(error) {
-	console.log(error);
+	for ( var i = 0 ; i < this.modelsCount ; i++ ) {
+
+		geometry = geometries[ i ];
+		data = this.modelsData[ i ];
+
+		switch(data.material) {
+			case 'MeshLambertMaterial':
+				material = new THREE.MeshLambertMaterial( {
+					color: data.color,
+					wireframe: data.wireframe,
+					emissive: data.emissive
+				});
+				break;
+			case 'MeshNormalMaterial':
+				material = new THREE.MeshNormalMaterial( {
+					color: data.color,
+					wireframe: data.wireframe,
+					emissive: data.emissive
+				});
+				break;
+			default:
+				material = new THREE.MeshLambertMaterial( {
+					color: data.color,
+					wireframe: data.wireframe,
+					emissive: data.emissive
+				});
+		}
+
+		mesh = new THREE.Mesh(geometry, material);
+		mesh.name = data.name;
+		mesh.visible = data.visible;
+		mesh.position.set(data.position.x, data.position.y, data.position.z);
+		mesh.rotation.set(data.rotation.x, data.rotation.y, data.rotation.z);
+		mesh.scale.set(data.scale.x, data.scale.y, data.scale.z);
+
+		this.meshes.push(mesh);
+	
+		geometry = null;
+		material = null;
+		data = null;
+		mesh = null;
+
+	}
+
+	return this.meshes;
+
 };
 
 groupLoader.prototype.getPromises = function() {

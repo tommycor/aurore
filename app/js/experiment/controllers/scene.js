@@ -170,6 +170,13 @@ Scene.prototype.addControlGui = function(controlObject){
 	//});
 };
 
+Scene.prototype.addMeshes = function(meshes) {
+	console.log('sisi ma gueule jarrive jusquici');
+	for( var i = 0 ; i < meshes.length ; i++ ) {
+		this.scene.add(meshes[ i ]);
+	}
+};
+
 Scene.prototype.resize = function() {
 
 	this.ratio = window.innerWidth / window.innerHeight;
