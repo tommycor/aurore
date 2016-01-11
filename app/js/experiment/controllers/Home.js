@@ -5,6 +5,7 @@ var $camControls = require('../actions/camControls');
 var $wholeHouse = require('../creators/WholeHouse');
 
 var $dataModels = require('../utils/DataModels');
+var $groupLoader = require('../creators/groupLoader');
 
 var Emitter = require('../utils/EventEmitter');
 var raf = require('../utils/raf');
@@ -20,36 +21,55 @@ Home.prototype.init = function() {
 	$scene.init();
 
 
-
 	this.createObjects();
 };
 
 Home.prototype.createObjects = function() {
-	$wholeHouse.init();
+	// $wholeHouse.init();
+
+	this.groupLoader = new $groupLoader('house');
+
+	this.groupPromise = this.groupLoader.load();
+
+	this.groupPromise.then(this.addObjects, this.error)
 };
 
-Home.prototype.addObjects = function() {
+Home.prototype.addObjects = function(geometries) {
 	console.log('Loaded');
 
-	console.log($dataModels);
+	// DEAL WITH GEOMETRY AND DEAL WITH CREATION OF THE MODELS IN GROUPLOADER
 
-	var obstacle;
+	var hitBox = $scene.scene.getObjectByName('HouseMin');
 
-	this.children = $wholeHouse.getMeshes();
-
-	// $scene.scene.add(this.children[1]);
-	for( var i = 0 ; i < this.children.length ; i++ ) {
-
-		$scene.scene.add(this.children[i]);
-
-	}
-
-	obstacle = $scene.scene.getObjectByName('HouseMin');
-
-	$camControls.init($scene.camera, $scene.gui, obstacle);
+	$camControls.init($scene.camera, $scene.gui, hitBox);
 
 	raf.start();
 };
+
+Home.prototype.error = function() {
+	console.log('Not good bro. Not good.');
+};
+
+// Home.prototype.addObjects = function() {
+// 	console.log('Loaded');
+
+// 	var obstacle;
+
+// 	this.children = $wholeHouse.getMeshes();
+
+// 	$scene.scene.add(this.children[1]);
+// 	for( var i = 0 ; i < this.children.length ; i++ ) {
+
+// 		$scene.scene.add(this.children[i]);
+
+// 	}
+
+// 	obstacle = $scene.scene.getObjectByName('HouseMin');
+
+// 	$camControls.init($scene.camera, $scene.gui, obstacle);
+
+// 	raf.start();
+// };
 
 
 Home.prototype.addListeners = function(){

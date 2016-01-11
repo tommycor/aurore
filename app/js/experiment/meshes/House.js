@@ -10,20 +10,19 @@ function House(){
 
 House.prototype.init = function() {
 
-
 	this.loaderObject = new THREE.JSONLoader();
 	this.loaderObject.load(this.url, this.createMesh);
+	
 };
 
 House.prototype.createMesh = function(geometry){
 	this.geometry = geometry;
 	this.geometry.computeFaceNormals();
 	this.geometry.computeVertexNormals();
-	// this.material = new THREE.MeshNormalMaterial({color: 0xFFDA0D, wireframe: false,});
 	this.material = new THREE.MeshLambertMaterial( {
-		color: 0xFFDA0D,
+		color: 0xBDBDBD,
 		// wireframe: true,
-		emissive: 0xD25D07
+		emissive: 0x484848
 	});
  
 	this.mesh = new THREE.Mesh(this.geometry, this.material);

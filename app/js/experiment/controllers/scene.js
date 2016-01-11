@@ -19,6 +19,7 @@ function Scene() {
 	console.log('Initialazing draw!');
 
 	Emitter.on('utils:events:resize', this.resize);
+   	console.log('DRAW');
 }
 
 Scene.prototype.init = function() {
@@ -36,8 +37,6 @@ Scene.prototype.draw = function() {
 	this.camera = new THREE.PerspectiveCamera(60, this.ratio, 0.1, 20000);
 
 	// this.camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 10000);
-
-	// this.orbit = new THREE.OrbitControls(this.camera);
 
 	////RENDERER
 	this.renderer = new THREE.WebGLRenderer();
@@ -57,6 +56,7 @@ Scene.prototype.draw = function() {
     this.spotLight.shadowCameraFar = 10000;
     this.spotLight.angle = Math.PI/2;
     this.scene.add(this.spotLight);
+
 
 	this.addControlGui();
 
@@ -104,12 +104,12 @@ Scene.prototype.addSSAO = function() {
 	this.depthTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat } );
 
 	this.ssao = new THREE.ShaderPass( THREE.SSAOShader );
-	this.ssao.uniforms[ 'tDepth' ].value = this.depthTarget;
-	this.ssao.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
-	this.ssao.uniforms[ 'cameraNear' ].value = this.camera.near;
-	this.ssao.uniforms[ 'cameraFar' ].value = this.camera.far;   
-	this.ssao.uniforms[ 'onlyAO' ].value = false;
-	this.ssao.uniforms[ 'aoClamp' ].value = 0.5;
+	this.ssao.uniforms.tDepth.value = this.depthTarget;
+	this.ssao.uniforms.size.value.set( window.innerWidth, window.innerHeight );
+	this.ssao.uniforms.cameraNear.value = this.camera.near;
+	this.ssao.uniforms.cameraFar.value = this.camera.far;   
+	this.ssao.uniforms.onlyAO.value = false;
+	this.ssao.uniforms.aoClamp.value = 0.5;
 	this.ssao.renderToScreen = false;
 
 
@@ -118,6 +118,7 @@ Scene.prototype.addSSAO = function() {
 Scene.prototype.render = function() {
 
 	this.stats.update();
+    // this.renderer.render( this.scene, this.camera );
 
 	this.scene.overrideMaterial = this.depthMaterial;
     this.renderer.render( this.scene, this.camera, this.depthTarget, true );
@@ -182,12 +183,6 @@ Scene.prototype.resize = function() {
 
 Scene.prototype.consoleBitch = function(event) {
 	console.log('consoleBitch');
-};
-
-module.exports = new Scene();.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
-
 };
 
 Scene.prototype.consoleBitch = function(event) {
