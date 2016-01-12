@@ -20,10 +20,10 @@ var uglify = require('gulp-uglify');
 var sourceDirectory = './app';
 var sourcePath = {
 	scss: sourceDirectory + '/scss/**/*.scss',
-	// js: sourceDirectory + '/js/**/*.js',
 	js: sourceDirectory + '/js/main.js',
 	jsAll: sourceDirectory + '/js/**/*.js',
 	jsLibs: [ sourceDirectory + '/libs/three.js', sourceDirectory + '/libs/EffectComposer.js', sourceDirectory + '/libs/*.js' ],
+	cssLibs: [ sourceDirectory + '/libs/*.css'],
 	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/*.html', sourceDirectory + '/html/*.html', sourceDirectory + '/models/**' ]
 };
 var distDirectory = './dist';
@@ -31,6 +31,7 @@ var distPath = {
 	css: distDirectory + '/css',
 	js: distDirectory + '/js',
 	jsLibs: distDirectory + '/libs/',
+	cssLibs: distDirectory + '/libs/',
 	other: distDirectory
 };
 
@@ -76,6 +77,13 @@ gulp.task('jsLibs', function() {
 	.pipe(notify('jsLibs Complete!'));
 });
 
+gulp.task('cssLibs', function() {
+	return gulp.src(sourcePath.cssLibs)
+	.pipe(concat('cssLibs.css'))
+	.pipe(gulp.dest(distPath.cssLibs))
+	.pipe(notify('cssLibs Complete!'));
+});
+
 gulp.task('clean', function(){
 	return gulp.src(distDirectory, {read: false})
 	.pipe(clean());
@@ -95,6 +103,7 @@ gulp.task('watch', function() {
 	gulp.watch(sourcePath.jsAll, ['js']);
 	gulp.watch(sourcePath.other, ['copy']);
 	gulp.watch(sourcePath.jsLibs, ['jsLibs']);
+	gulp.watch(sourcePath.cssLibs, ['cssLibs']);
 	gulp.watch([sourceDirectory + '/**']).on('change', function() {
 		livereload();
 	});

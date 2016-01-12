@@ -113,8 +113,6 @@ CamControls.prototype.getHeight = function() {
 		this.controls.moveDown = false;
 	}
 
-
-
 };
 
 CamControls.prototype.getWall = function(ray, minDist) {
@@ -134,8 +132,9 @@ CamControls.prototype.getWall = function(ray, minDist) {
 
 CamControls.prototype.consoleMeAThing = function() {
 
-	// if (typeof collisions !== 'undefined')
-	// console.log(this.collisions);
+	console.log('consoleMeAThing');
+	console.log(this.camera.position);
+
 };
 
 module.exports = new CamControls();

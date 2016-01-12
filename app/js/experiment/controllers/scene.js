@@ -6,7 +6,7 @@ function Scene() {
 	this.consoleBitch = this.consoleBitch.bind(this);
 	this.resize = this.resize.bind(this);
 	
-	this.container = document.getElementById('exp');
+	this.container = document.getElementById('webGL');
 
 	this.ratio = window.innerWidth / window.innerHeight;
 
@@ -18,13 +18,14 @@ function Scene() {
 
 	console.log('Initialazing draw!');
 
-	Emitter.on('utils:events:resize', this.resize);
-   	console.log('DRAW');
+	console.log('DRAW');
 }
 
 Scene.prototype.init = function() {
 
 	this.draw();
+	
+	Emitter.on('utils:events:resize', this.resize);
 
 };
 
@@ -48,14 +49,14 @@ Scene.prototype.draw = function() {
 	this.ambient = new THREE.AmbientLight( 0x444444 );
 	this.scene.add(this.ambient);
 
-    //// SPOTLIGHT
-    this.spotLight = new THREE.SpotLight(0xffffff);
-    this.spotLight.position.set(10, 1000, 20);
-    this.spotLight.shadowCameraNear = 20;
-    this.spotLight.intensity = 2;
-    this.spotLight.shadowCameraFar = 10000;
-    this.spotLight.angle = Math.PI/2;
-    this.scene.add(this.spotLight);
+	//// SPOTLIGHT
+	this.spotLight = new THREE.SpotLight(0xffffff);
+	this.spotLight.position.set(10, 1000, 20);
+	this.spotLight.shadowCameraNear = 20;
+	this.spotLight.intensity = 2;
+	this.spotLight.shadowCameraFar = 10000;
+	this.spotLight.angle = Math.PI/2;
+	this.scene.add(this.spotLight);
 
 
 	this.addControlGui();
@@ -118,12 +119,12 @@ Scene.prototype.addSSAO = function() {
 Scene.prototype.render = function() {
 
 	this.stats.update();
-    // this.renderer.render( this.scene, this.camera );
+	// this.renderer.render( this.scene, this.camera );
 
 	this.scene.overrideMaterial = this.depthMaterial;
-    this.renderer.render( this.scene, this.camera, this.depthTarget, true );
-    this.scene.overrideMaterial = null;
-    this.composer.render();
+	this.renderer.render( this.scene, this.camera, this.depthTarget, true );
+	this.scene.overrideMaterial = null;
+	this.composer.render();
 
 };
 
@@ -181,10 +182,10 @@ Scene.prototype.resize = function() {
 
 	this.ratio = window.innerWidth / window.innerHeight;
 
-    this.camera.aspect = this.ratio;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
+	this.camera.aspect = this.ratio;
+	this.camera.updateProjectionMatrix();
+	this.renderer.setSize(window.innerWidth, window.innerHeight);
+	this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
 
 };
 

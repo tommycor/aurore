@@ -1,0 +1,23 @@
+.gender {
+	transition: opacity 1s ease-in-out;
+	opacity: 0;
+	color: white;
+
+	&__container {
+		@extend %vertical-center;
+
+		width: 100%;
+
+		&__title {
+			@extend %horizontal-center-relative;
+			
+			width: 400px;
+		}
+
+		&__buttons {
+			@extend %horizontal-center-relative;
+
+			width: 400px;
+		}
+	}
+}

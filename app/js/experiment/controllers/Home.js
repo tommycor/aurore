@@ -17,18 +17,15 @@ function Home(){
 }
 
 Home.prototype.init = function() {
-	// this.addListeners();
 
 	$scene.init();
 
 	this.groupName = 'house';
 
-
 	this.createObjects();
 };
 
 Home.prototype.createObjects = function() {
-	// $wholeHouse.init();
 
 	this.groupLoader = new $groupLoader(this.groupName);
 

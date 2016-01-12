@@ -1,4 +1,6 @@
+var $gender = require('./controllers/Gender');
 var $home = require('./controllers/Home');
+var $video = require('./controllers/Video');
 
 function Experiment() {
 
@@ -15,11 +17,17 @@ Experiment.prototype.router = function() {
 	this.hash = location.hash.replace('#', '');
 	
 	switch(this.hash) {
+	case 'gender':
+		$gender.init();
+		break;
+	case 'videointro--0':
+		$video.init(0);
+		break;
 	case 'home':
 		$home.init();
 		break;
 	default:
-		location.hash = 'home';
+		location.hash = 'gender';
 	}
 };
 

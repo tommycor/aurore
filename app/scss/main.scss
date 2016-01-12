@@ -2,5 +2,8 @@
 
 @import "base/normalize", "base/general";
 
-@import "modules/exp.scss",
+@import  "config/extends", "config/mixins";
+
+@import "modules/exp__exp.scss",
+		"modules/exp__gender.scss",
 		"test_modules/test.scss";
