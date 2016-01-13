@@ -1,3 +1,5 @@
+var config = require('../utils/config')
+
 function Gender() {
 
 	this.section = document.getElementById('gender');
@@ -33,13 +35,15 @@ Gender.prototype.done = function() {
 
 	TweenMax.set(gender, { display:'none' });
 
-	if( this.id === 'gender__male' )
-		location.search = '?gender=male';
+	if ( this.id === 'gender__male' ){
+		config.gender = 'male';
+		location.hash = 'videoIntro__male--0';
+	}
+	else if ( this.id === 'gender__female' ) {
+		config.gender = 'female';
+		location.hash = 'videoIntro__female--0';
+	}
 
-	else if( this.id === 'gender__female' )
-		location.search = '?gender=female';
-
-	location.hash = "videoIntro--0";
 
 }
 

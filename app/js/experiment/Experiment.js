@@ -15,13 +15,16 @@ function Experiment() {
 Experiment.prototype.router = function() {
 
 	this.hash = location.hash.replace('#', '');
-	
+
 	switch(this.hash) {
 	case 'gender':
 		$gender.init();
 		break;
-	case 'videointro--0':
-		$video.init(0);
+	case 'videoIntro__male--0':
+		$video.init('videoIntro__male--0');
+		break;
+	case 'videoIntro__female--0':
+		$video.init('videoIntro__female--0');
 		break;
 	case 'home':
 		$home.init();
