@@ -8,27 +8,43 @@
 </head>
 <body>
 	<div id="exp" class="exp">
+
+		<!-- GENDER -->
 		<section id="gender" class="section gender">
 			<div class="gender__container">
-				<h1 class="gender__container__title" >Choisit ton personnage!</h1>
+				<h1 class="gender__container__title" >Choisis ton personnage!</h1>
 				<div class="gender__container__buttons" id="gender__buttons">
 					<button class="gender__container__buttons__element" id="gender__male">Garçon</button>
 					<button class="gender__container__buttons__element" id="gender__female">Fille</button>
 				</div>
 			</div>
 		</section>
-		<section id="videoIntro" class="section video Intro__male--0" >
+
+		<!-- VIDEO INTRO -->
+		<section class="section video Intro__male--0" >
 			<button class="video__next">Passer la vidéo</button>
-			<p class="video__subtitles" id="videoIntro__subtitles">Ding. Ding ding ding ding ding ding ding ding, ding ding ding, ding ding ding ding ding.</p>
+			<p class="subtitles" id="videoIntro__subtitles">Ding. Ding ding ding ding ding ding ding ding, ding ding ding, ding ding ding ding ding.</p>
 			<video id="videoIntro__male--0" class="video">
-				<source src="videos/videoIntro--0.mp4" type="video/mp4">
+				<source src="videos/videoIntro__male--0.mp4" type="video/mp4">
 			</video>
 		</section>
+		<section class="section video Intro__male--0" >
+			<button class="video__next">Passer la vidéo</button>
+			<p class="subtitles" id="videoIntro__subtitles">DISRESPECT YOUR SURROUNDINGS!</p>
+			<video id="videoIntro__female--0" class="video">
+				<source src="videos/videoIntro__female--0.mp4" type="video/mp4">
+			</video>
+		</section>
+
+		<!-- WEBGL -->
 		<section id="webGL" class="section exp">
 			<div class="HUD">
 				Bonjour, je s'appelle HUD.
 			</div>
+			<p class="subtitles subtitles--sound" id="start__subtitles__male">J'aime me beurrer la biscotte. J'aime le bruit blanc de l'eau. J'aime quand on m'enduit d'huile.</p>
+			<p class="subtitles subtitles--sound" id="start__subtitles__female">-Est-ce que ça va?<br />-Ca va aller... C'est juste que... J'ai un peu vomit dans ma bouche.</p>
 		</section>
+
 	</div>
 	<audio id="soundPlayer">
 	  <!-- <source id="sourceOgg" src="" type="audio/ogg" /> -->

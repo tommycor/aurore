@@ -9,13 +9,4 @@
 		color: white;
 		z-index: 2;
 	}
-
-	&__subtitles {
-		@extend %horizontal-center;
-
-		bottom: 20px;
-		color: white;
-		z-index: 2;
-		font-size: 30px;
-	}
 }

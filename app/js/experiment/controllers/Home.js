@@ -3,7 +3,6 @@ var $sound = require('./Sound');
 
 var $camControls = require('../actions/camControls');
 
-var $dataModels = require('../utils/DataModels');
 var $groupLoader = require('../creators/groupLoader');
 
 var Emitter = require('../utils/EventEmitter');
@@ -77,7 +76,6 @@ Home.prototype.addListeners = function() {
 };
 
 Home.prototype.setMouvement = function() {
-	console.log('mellow');
 	$camControls.controls.movementSpeed = this.movementSpeed;
 };
 

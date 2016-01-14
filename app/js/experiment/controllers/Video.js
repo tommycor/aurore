@@ -4,11 +4,12 @@ function Video() {
 	this.done = this.done.bind(this);
 
 	this.video = null;
-	this.wrapVideo = null;
 	this.section = null;
+	this.videoName = null;
+	this.buttonsNext = null;
+
 
 }
-
 Video.prototype.init = function(videoName) {
 
 	this.videoName = videoName;
