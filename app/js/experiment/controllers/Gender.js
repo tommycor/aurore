@@ -2,11 +2,11 @@ var config = require('../utils/config')
 
 function Gender() {
 
-	this.section = document.getElementById('gender');
-	this.buttons = document.getElementById('gender__buttons');
-
 	this.done = this.done.bind(this);
 	this.genderSelection = this.genderSelection.bind(this);
+
+	this.section = document.getElementById('gender');
+	this.buttons = document.getElementById('gender__buttons');
 
 }
 
@@ -32,8 +32,6 @@ Gender.prototype.genderSelection = function(event) {
 };
 
 Gender.prototype.done = function() {
-
-	TweenMax.set(gender, { display:'none' });
 
 	if ( this.id === 'gender__male' ){
 		config.gender = 'male';

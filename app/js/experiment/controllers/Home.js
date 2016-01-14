@@ -1,8 +1,7 @@
 var $scene = require('./scene');
+var $sound = require('./Sound');
 
 var $camControls = require('../actions/camControls');
-
-var $wholeHouse = require('../creators/WholeHouse');
 
 var $dataModels = require('../utils/DataModels');
 var $groupLoader = require('../creators/groupLoader');
@@ -13,16 +12,27 @@ var raf = require('../utils/raf');
 require('../utils/GlobalEvents');
 
 function Home(){
+
 	this.addObjects = this.addObjects.bind(this);
+	this.setMouvement = this.setMouvement.bind(this);
+
+	this.movementSpeed = 120;
+
+	this.groupName = 'house';
+
+	this.section = document.getElementById('webGL');
+
+
 }
 
 Home.prototype.init = function() {
 
 	$scene.init();
 
-	this.groupName = 'house';
-
 	this.createObjects();
+
+	this.addListeners();
+
 };
 
 Home.prototype.createObjects = function() {
@@ -32,9 +42,11 @@ Home.prototype.createObjects = function() {
 	this.groupPromise = this.groupLoader.load();
 
 	this.groupPromise.then(this.addObjects, this.error);
+
 };
 
 Home.prototype.addObjects = function(geometries) {
+
 	var meshes = null;
 	var hitbox = null;
 
@@ -46,40 +58,34 @@ Home.prototype.addObjects = function(geometries) {
 
 	console.log($scene.scene);
 
+	TweenMax.set(this.section, { opacity: 0 } );
+	TweenMax.to(this.section, 1, { opacity: 1, display:'block' } );
+
 	$camControls.init($scene.camera, $scene.gui, hitBox);
+
+	$camControls.controls.movementSpeed = 0;
+
+	$sound.init('start');
 
 	raf.start();
 };
 
-Home.prototype.error = function() {
-	console.log('Error.');
-	console.log('Not good bro. Not good.');
+Home.prototype.addListeners = function() {
+
+	$sound.player.addEventListener('ended', this.setMouvement );
+
 };
 
-// Home.prototype.addObjects = function() {
-// 	console.log('Loaded');
+Home.prototype.setMouvement = function() {
+	console.log('mellow');
+	$camControls.controls.movementSpeed = this.movementSpeed;
+};
 
-// 	var obstacle;
+Home.prototype.error = function() {
 
-// 	this.children = $wholeHouse.getMeshes();
+	console.log('Error.');
+	console.log('Not good bro. Not good.');
 
-// 	$scene.scene.add(this.children[1]);
-// 	for( var i = 0 ; i < this.children.length ; i++ ) {
-
-// 		$scene.scene.add(this.children[i]);
-
-// 	}
-
-// 	obstacle = $scene.scene.getObjectByName('HouseMin');
-
-// 	$camControls.init($scene.camera, $scene.gui, obstacle);
-
-// 	raf.start();
-// };
-
-
-// Home.prototype.addListeners = function(){
-// 	Emitter.on('event:creator:wholeHouse', this.addObjects);
-// };
+};
 
 module.exports = new Home();

@@ -24,7 +24,7 @@ var sourcePath = {
 	jsAll: sourceDirectory + '/js/**/*.js',
 	jsLibs: [ sourceDirectory + '/libs/three.js', sourceDirectory + '/libs/EffectComposer.js', sourceDirectory + '/libs/*.js' ],
 	cssLibs: [ sourceDirectory + '/libs/*.css'],
-	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/*.html', sourceDirectory + '/html/*.html', sourceDirectory + '/models/**' , sourceDirectory + '/videos/**' ]
+	other: [ sourceDirectory + '/fonts/**', sourceDirectory + '/img/**', sourceDirectory + '/partials/**', sourceDirectory + '/*.html', sourceDirectory + '/html/*.html', sourceDirectory + '/models/**' , sourceDirectory + '/videos/**' , sourceDirectory + '/sounds/**' ]
 };
 var distDirectory = './dist';
 var distPath = {

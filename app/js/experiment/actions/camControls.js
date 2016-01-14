@@ -12,16 +12,16 @@ CamControls.prototype.init = function( camera, gui, obstacle ) {
 	this.obstacle = [obstacle];
 	this.clock = new THREE.Clock();
 
-	this.camera.position.x = 0;
-	this.camera.position.y = 0;
-	this.camera.position.z = 0;
+	this.camera.position.x = 850;
+	this.camera.position.y = 101;
+	this.camera.position.z = 900;
 	this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 
 
 	this.controls = new THREE.FirstPersonControls(camera);
 	this.controls.lookSpeed = 0.15;
-	this.controls.movementSpeed = 90;
+	this.controls.movementSpeed = 120;
 	this.controls.noFly = true;
 	this.controls.lookVertical = true;
 	this.controls.constrainVertical = true;

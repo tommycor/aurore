@@ -1,0 +1,8 @@
+.HUD {
+	@extend %horizontal-center;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	color: white;
+	cursor: crosshair;
+}
