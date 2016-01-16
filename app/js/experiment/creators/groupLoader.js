@@ -1,4 +1,3 @@
-var Emitter = require('../utils/EventEmitter');
 var dataModels = require('../utils/DataModels');
 // var promise = require('../utils/Promise');
 

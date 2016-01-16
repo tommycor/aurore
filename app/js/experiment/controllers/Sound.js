@@ -3,6 +3,7 @@ var config = require('../utils/config');
 function Sound() {
 	
 	this.ended = this.ended.bind(this);
+	this.play = this.play.bind(this);
 
 	this.player = document.getElementById( 'soundPlayer' );
 	this.sourceOgg = document.getElementById( 'sourceOgg' );
@@ -13,7 +14,6 @@ function Sound() {
 }
 
 Sound.prototype.init = function(sound){
-
 		
 	this.player.addEventListener('ended', this.ended );
 
@@ -22,12 +22,6 @@ Sound.prototype.init = function(sound){
 	this.sourceMp3.src = 'sounds/' + sound + '__' + config.gender + '.mp3';
 
 	this.player.load();
-
-	if(sound === 'start')
-		setTimeout( this.play(), 1000 );
-	else
-		this.play();
-
 };
 
 Sound.prototype.play = function() {
@@ -35,14 +29,18 @@ Sound.prototype.play = function() {
 	TweenMax.set(this.subtitles, { opacity: 0 } );
 	TweenMax.to(this.subtitles, 1, { opacity: 1, display:'block' } );
 
-	this.player.play();
+	// this.player.play();
 
 };
 
 Sound.prototype.ended = function() {
 
+	console.log('ended');
+
 	TweenMax.set(this.subtitles, { opacity: 1 } );
-	TweenMax.to(this.subtitles, 1, { opacity: 0, display: 'none' } );
+	TweenMax.to(this.subtitles, 1, { opacity: 0, display: 'none', onComplete: function() {
+		location.hash = 'garden';
+	} } );
 
 };
 

@@ -1,4 +1,4 @@
-var config = require('../utils/config')
+var config = require('../utils/config');
 
 function Gender() {
 

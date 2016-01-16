@@ -1,5 +1,3 @@
-var Emitter = require('../utils/EventEmitter');
-
 function CamControls(){
 
 
@@ -43,7 +41,7 @@ CamControls.prototype.init = function( camera, gui, obstacle ) {
 	this.distMaxBottom = this.distMinBottom + 10;
 
 	window.addEventListener('click', this.consoleMeAThing);
-	Emitter.on('utils:events:resize', this.controls.handleResize);
+	window.addEventListener('resize', this.controls.handleResize);
 
 };
 

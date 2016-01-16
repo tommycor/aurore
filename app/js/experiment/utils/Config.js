@@ -1,5 +1,5 @@
 var Config = {
-	gender: null
+	gender: 'male'
 };
 
 module.exports = Config;

@@ -1,5 +1,3 @@
-var Emitter = require('../utils/EventEmitter');
-
 function Scene() {
 
 	this.render = this.render.bind(this);
@@ -18,13 +16,12 @@ function Scene() {
 Scene.prototype.init = function() {
 
 	this.draw();
-	
-	Emitter.on('utils:events:resize', this.resize);
+
+	window.addEventListener('resize', this.resize);
 
 };
 
 Scene.prototype.draw = function() {
-
 
 	//// INIT
 	this.scene = new THREE.Scene();
@@ -172,7 +169,7 @@ Scene.prototype.addMeshes = function(meshes) {
 };
 
 Scene.prototype.resize = function() {
-
+	console.log('got resized!');
 	this.ratio = window.innerWidth / window.innerHeight;
 
 	this.camera.aspect = this.ratio;

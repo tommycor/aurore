@@ -1,23 +1,20 @@
-var $scene = require('./scene');
-var $sound = require('./Sound');
+var scene = require('./scene');
+var sound = require('./Sound');
 
-var $camControls = require('../actions/camControls');
+var camControls = require('../actions/camControls');
 
-var $groupLoader = require('../creators/groupLoader');
+var groupLoader = require('../creators/groupLoader');
 
-var Emitter = require('../utils/EventEmitter');
 var raf = require('../utils/raf');
-
-require('../utils/GlobalEvents');
 
 function Home(){
 
 	this.addObjects = this.addObjects.bind(this);
-	this.setMouvement = this.setMouvement.bind(this);
+	this.introFinished = this.introFinished.bind(this);
 
 	this.movementSpeed = 120;
 
-	this.groupName = 'house';
+	this.groupName = 'firstfloor';
 
 	this.section = document.getElementById('webGL');
 
@@ -26,7 +23,7 @@ function Home(){
 
 Home.prototype.init = function() {
 
-	$scene.init();
+	scene.init();
 
 	this.createObjects();
 
@@ -36,7 +33,7 @@ Home.prototype.init = function() {
 
 Home.prototype.createObjects = function() {
 
-	this.groupLoader = new $groupLoader(this.groupName);
+	this.groupLoader = new groupLoader(this.groupName);
 
 	this.groupPromise = this.groupLoader.load();
 
@@ -49,34 +46,51 @@ Home.prototype.addObjects = function(geometries) {
 	var meshes = null;
 	var hitbox = null;
 
+
 	meshes = this.groupLoader.createMeshes(geometries);
 
-	$scene.addMeshes(meshes);
+	scene.addMeshes(meshes);
 
-	hitBox = $scene.scene.getObjectByName('HouseMin');
+	console.log(scene.scene);
 
-	console.log($scene.scene);
+	hitBox = scene.scene.getObjectByName('HouseMin');
+
 
 	TweenMax.set(this.section, { opacity: 0 } );
 	TweenMax.to(this.section, 1, { opacity: 1, display:'block' } );
 
-	$camControls.init($scene.camera, $scene.gui, hitBox);
 
-	$camControls.controls.movementSpeed = 0;
+	camControls.init(scene.camera, scene.gui, hitBox);
 
-	$sound.init('start');
+	camControls.controls.movementSpeed = 120;
+
+
+	sound.init('start');
+
+	sound.play();
+
 
 	raf.start();
 };
 
 Home.prototype.addListeners = function() {
 
-	$sound.player.addEventListener('ended', this.setMouvement );
+	sound.player.addEventListener('ended', this.introFinished );
 
 };
 
-Home.prototype.setMouvement = function() {
-	$camControls.controls.movementSpeed = this.movementSpeed;
+Home.prototype.introFinished = function() {
+
+	camControls.controls.movementSpeed = this.movementSpeed;
+
+};
+
+Home.prototype.garden = function() {
+
+	sound.init('sound__01');
+
+	setTimeout(sound.play, 20000);
+
 };
 
 Home.prototype.error = function() {
