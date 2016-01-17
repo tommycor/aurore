@@ -7,21 +7,21 @@ var groupLoader = require('../creators/groupLoader');
 
 var raf = require('../utils/raf');
 
-function Home(){
+function Mission01(){
 
 	this.addObjects = this.addObjects.bind(this);
 	this.introFinished = this.introFinished.bind(this);
 
 	this.movementSpeed = 120;
 
-	this.groupName = 'firstfloor';
+	this.groupName = 'garden';
 
 	this.section = document.getElementById('webGL');
 
 
 }
 
-Home.prototype.init = function() {
+Mission01.prototype.init = function() {
 
 	scene.init();
 
@@ -31,7 +31,7 @@ Home.prototype.init = function() {
 
 };
 
-Home.prototype.createObjects = function() {
+Mission01.prototype.createObjects = function() {
 
 	this.groupLoader = new groupLoader(this.groupName);
 
@@ -41,7 +41,7 @@ Home.prototype.createObjects = function() {
 
 };
 
-Home.prototype.addObjects = function(geometries) {
+Mission01.prototype.addObjects = function(geometries) {
 
 	var meshes = null;
 	var hitbox = null;
@@ -62,7 +62,7 @@ Home.prototype.addObjects = function(geometries) {
 
 	camControls.init(scene.camera, scene.gui, hitBox);
 
-	camControls.controls.movementSpeed = 120;
+	camControls.controls.movementSpeed = 0;
 
 
 	sound.init('start');
@@ -73,19 +73,19 @@ Home.prototype.addObjects = function(geometries) {
 	raf.start();
 };
 
-Home.prototype.addListeners = function() {
+Mission01.prototype.addListeners = function() {
 
 	sound.player.addEventListener('ended', this.introFinished );
 
 };
 
-Home.prototype.introFinished = function() {
+Mission01.prototype.introFinished = function() {
 
 	camControls.controls.movementSpeed = this.movementSpeed;
 
 };
 
-Home.prototype.garden = function() {
+Mission01.prototype.walk = function() {
 
 	sound.init('sound__01');
 
@@ -93,11 +93,11 @@ Home.prototype.garden = function() {
 
 };
 
-Home.prototype.error = function() {
+Mission01.prototype.error = function() {
 
 	console.log('Error.');
 	console.log('Not good bro. Not good.');
 
 };
 
-module.exports = new Home();
+module.exports = new Mission01();

@@ -1,5 +1,5 @@
 var gender = require('./controllers/Gender');
-var home = require('./controllers/Home');
+var mission01 = require('./controllers/Mission01');
 var video = require('./controllers/Video');
 
 function Experiment() {
@@ -24,17 +24,23 @@ Experiment.prototype.router = function() {
 	case 'gender':
 		gender.init();
 		break;
-	case 'videoIntro__male--0':
-		video.init('videoIntro__male--0');
+	case 'videoIntro__male':
+		video.init('videoIntro__male');
 		break;
-	case 'videoIntro__female--0':
-		video.init('videoIntro__female--0');
+	case 'videoIntro__female':
+		video.init('videoIntro__female');
 		break;
-	case 'home':
-		home.init();
+	case 'mission01--start':
+		mission01.init();
 		break;
-	case 'garden':
-		home.garden();
+	case 'mission01--walk':
+		mission01.walk();
+		break;
+	case 'video01__male':
+		video.init('video01__male');
+		break;
+	case 'video01__female':
+		video.init('video01__female');
 		break;
 	default:
 		location.hash = 'gender';

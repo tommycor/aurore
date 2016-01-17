@@ -20,7 +20,10 @@ Gender.prototype.init = function(){
 };
 
 Gender.prototype.genderSelection = function(event) {
-	this.id = event.srcElement.id;
+
+	console.log(event);
+
+	this.id = event.target.id;
 
 	if( this.id === 'gender__male' || this.id === 'gender__female' ){
 
@@ -33,16 +36,19 @@ Gender.prototype.genderSelection = function(event) {
 
 Gender.prototype.done = function() {
 
-	if ( this.id === 'gender__male' ){
+	switch( this.id ) {
+	case 'gender__male':
 		config.gender = 'male';
-		location.hash = 'videoIntro__male--0';
-	}
-	else if ( this.id === 'gender__female' ) {
+		location.hash = 'videoIntro__male';
+		break;
+	case 'gender__female':
 		config.gender = 'female';
-		location.hash = 'videoIntro__female--0';
+		location.hash = 'videoIntro__female';
+		break;
+	default:
+		location.hash = 'gender';
 	}
 
-
-}
+};
 
 module.exports = new Gender();

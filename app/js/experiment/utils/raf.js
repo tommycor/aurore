@@ -7,6 +7,8 @@ function raf() {
 	this.stop = this.stop.bind(this);
 	this.controle = this.controle.bind(this);
 
+	this.running = false;
+
 	window.addEventListener('keydown', this.controle);
 }
 
@@ -14,12 +16,14 @@ raf.prototype.start = function() {
 	scene.render();
 	camControls.render();
 
+	this.running = true;
 	this.request = requestAnimationFrame(this.start);
 };
 
 raf.prototype.stop = function() {
 	cancelAnimationFrame(this.request);
 
+	this.running = false;
 	this.request = null;
 };
 
