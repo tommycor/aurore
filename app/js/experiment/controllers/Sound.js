@@ -51,7 +51,10 @@ Sound.prototype.transition = function() {
 		location.hash = 'mission01--walk';
 		break;
 	case 'sound__01':
-		location.hash = 'video01__male';
+		if (config.gender === 'male')
+			location.hash = 'video01__male';
+		else
+			location.hash = 'video01__female';
 		break;
 	default:
 		// do nothing;

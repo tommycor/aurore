@@ -165,6 +165,7 @@ Scene.prototype.addControlGui = function(controlObject){
 Scene.prototype.addMeshes = function(meshes) {
 	for( var i = 0 ; i < meshes.length ; i++ ) {
 		this.scene.add(meshes[ i ]);
+		console.log(i);
 	}
 };
 

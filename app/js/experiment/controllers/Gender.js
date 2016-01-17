@@ -21,8 +21,6 @@ Gender.prototype.init = function(){
 
 Gender.prototype.genderSelection = function(event) {
 
-	console.log(event);
-
 	this.id = event.target.id;
 
 	if( this.id === 'gender__male' || this.id === 'gender__female' ){

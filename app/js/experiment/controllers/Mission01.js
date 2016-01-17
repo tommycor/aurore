@@ -18,6 +18,7 @@ function Mission01(){
 
 	this.section = document.getElementById('webGL');
 
+	this.portal = null;
 
 }
 
@@ -51,8 +52,6 @@ Mission01.prototype.addObjects = function(geometries) {
 
 	scene.addMeshes(meshes);
 
-	console.log(scene.scene);
-
 	hitBox = scene.scene.getObjectByName('HouseMin');
 
 
@@ -69,7 +68,6 @@ Mission01.prototype.addObjects = function(geometries) {
 
 	sound.play();
 
-
 	raf.start();
 };
 
@@ -82,6 +80,14 @@ Mission01.prototype.addListeners = function() {
 Mission01.prototype.introFinished = function() {
 
 	camControls.controls.movementSpeed = this.movementSpeed;
+
+};
+
+Mission01.prototype.getPortal = function() {
+
+	raf.start();
+
+	console.log( scene.scene.getObjectByName('garden__portail') );
 
 };
 

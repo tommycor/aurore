@@ -54,12 +54,12 @@ Video.prototype.done = function() {
 
 	this.video.pause();
 
-	if ( this.videoName === 'videoIntro__male' || this.videoName === 'videoIntro__female' ){
-
+	if ( this.videoName === 'videoIntro__male' || this.videoName === 'videoIntro__female' )
 		location.hash = 'mission01--start';
 
-	}
+	else if ( this.videoName === 'video01__male' || this.videoName === 'video01__female' )
+		location.hash = 'mission01--portal';
 
-}
+};
 
 module.exports = new Video();

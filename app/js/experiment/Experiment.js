@@ -18,8 +18,6 @@ Experiment.prototype.router = function() {
 
 	this.hash = location.hash.replace('#', '');
 
-	console.log(this.hash);
-
 	switch(this.hash) {
 	case 'gender':
 		gender.init();
@@ -41,6 +39,9 @@ Experiment.prototype.router = function() {
 		break;
 	case 'video01__female':
 		video.init('video01__female');
+		break;
+	case 'mission01--portal':
+		mission01.getPortal();
 		break;
 	default:
 		location.hash = 'gender';
