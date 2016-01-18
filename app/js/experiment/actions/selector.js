@@ -6,7 +6,7 @@ function selector( camera, target ) {
 
 	this.target = [ target ];
 
-	this.targetColor = this.target[0].material.color;
+	this.targetColor = this.target[0].material.emissive;
 
 	this.activated = false;
 
@@ -20,7 +20,7 @@ function selector( camera, target ) {
 
 selector.prototype.activate = function() {
 
-	TweenMax.to(this.targetColor, 0.6, { r:1, g:1, b:1, yoyo:true, repeat: -1 } );
+	TweenMax.to(this.targetColor, 1, { r:1, g:1, b:1, yoyo:true, repeat: -1 } );
 
 	this.activated = true;
 

@@ -60,6 +60,7 @@
 * Access it through [http://local.dev/dist](http://local.dev/)
 * run LiveReload software 
 * Enable LiveReload chrome extension
+* to stop running, hit ctrl+c and enter ```vagrant halt```
 
 ## Commit changes
 * in git bash enter the command ```git fetch upstream```
