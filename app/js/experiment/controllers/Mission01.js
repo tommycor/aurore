@@ -1,7 +1,8 @@
-var scene = require('./scene');
-var sound = require('./Sound');
+var scene = require('../controllers/scene');
+var sound = require('../controllers/Sound');
 
 var camControls = require('../actions/camControls');
+var selector = require('../actions/selector');
 
 var groupLoader = require('../creators/groupLoader');
 
@@ -19,6 +20,8 @@ function Mission01(){
 	this.section = document.getElementById('webGL');
 
 	this.portal = null;
+
+	this.debug = true;
 
 }
 
@@ -61,14 +64,23 @@ Mission01.prototype.addObjects = function(geometries) {
 
 	camControls.init(scene.camera, scene.gui, hitBox);
 
-	camControls.controls.movementSpeed = 0;
+
+	if ( this.debug )
+		location.hash = 'mission01--portal';
+
+	else {
+	
+		camControls.controls.movementSpeed = 0;
+
+		sound.init('start');
+
+		sound.play();
+
+		raf.start();
+		
+	}
 
 
-	sound.init('start');
-
-	sound.play();
-
-	raf.start();
 };
 
 Mission01.prototype.addListeners = function() {
@@ -87,7 +99,14 @@ Mission01.prototype.getPortal = function() {
 
 	raf.start();
 
-	console.log( scene.scene.getObjectByName('garden__portail') );
+	this.portal = scene.scene.getObjectByName('garden__portail');
+	this.portal = scene.scene.getObjectByName('garden__echelle');
+
+	this.portalSelector = new selector(scene.camera, this.portal);
+
+	this.portalSelector.activate();
+
+	window.addEventListener('mousemove', this.portalSelector.refresh);
 
 };
 
