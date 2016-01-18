@@ -21,7 +21,7 @@ function Mission01(){
 
 	this.portal = null;
 
-	this.debug = true;
+	this.debug = false;
 
 }
 

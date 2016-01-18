@@ -11,20 +11,17 @@
 * [GulpJS](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 	- enter the command in cmd ```npm install --global gulp```
 * [plink](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+* for windows, be sure needed paths are configured
 
 ## Fork Process
 * Fork the project through Github
-* in git bash enter the command ```https://github.com/tommycor/starter-Angular.git``` or ```git@github.com:tommycor/starter-Angular.git``` (ssh style)
+* in git bash enter the command ```git clone https://github.com/tommycor/aurore.git``` or ``` git clone git@github.com:tommycor/aurore.git``` (ssh style)
 * ```git remote add upstream https://github.com/tommycor/aurore```
-* in git bash enter the command ```git fetch upstream```
-* in git bash enter the command ```git merge upstream/master```
-
-* **Before making a new pull request, fetch upstream content and merge it localy**
 
 ## Project installation
 * install puphpet files
 	- go to [puphpet](https://puphpet.com/)
-	- drag on the page the file config.yaml
+	- drag on the page the file puphpet/config.yaml
 	- create the archive on puphpet
 	- Unzip the whole archive in the project directory
 	- add in C:\Windows\System32\drivers\etc\hosts file ```192.168.56.101	local.dev```
@@ -65,7 +62,15 @@
 * Enable LiveReload chrome extension
 
 ## Commit changes
+* in git bash enter the command ```git fetch upstream```
+* in git bash enter the command ```git merge upstream/master```
 * in git bash enter the command ```git add .```
 * if files have been erased, in git bash enter the command ```git add -A .``` (the dot is added since git 2.0)
 * in git bash enter the command ```git add -m "my message"```
+* in git bash enter the command ```git pull``` (and enter password if http is configured)
+* Commiting changes on main repo is made on github website itself
 
+* **Before making a new pull request, fetch upstream content and merge it localy**
+
+
+Few changes are needed for macOS, especially for macOS installation, and I don't know wich those are
