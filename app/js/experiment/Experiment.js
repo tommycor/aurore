@@ -1,5 +1,6 @@
 var gender = require('./controllers/Gender');
 var mission01 = require('./controllers/Mission01');
+var mission02 = require('./controllers/Mission02');
 var video = require('./controllers/Video');
 
 function Experiment() {
@@ -42,6 +43,9 @@ Experiment.prototype.router = function() {
 		break;
 	case 'mission01--portal':
 		mission01.getPortal();
+		break;
+	case 'mission02--start':
+		mission02.init();
 		break;
 	default:
 		location.hash = 'gender';

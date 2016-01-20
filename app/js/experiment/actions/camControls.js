@@ -19,7 +19,7 @@ CamControls.prototype.init = function( camera, gui, obstacle ) {
 
 	this.controls = new THREE.FirstPersonControls(camera);
 	this.controls.lookSpeed = 0.15;
-	this.controls.movementSpeed = 120;
+	this.controls.movementSpeed = 500;
 	this.controls.noFly = true;
 	this.controls.lookVertical = true;
 	this.controls.constrainVertical = true;
@@ -40,7 +40,7 @@ CamControls.prototype.init = function( camera, gui, obstacle ) {
 	this.distMinBottom = 100;
 	this.distMaxBottom = this.distMinBottom + 10;
 
-	window.addEventListener('click', this.consoleMeAThing);
+	// window.addEventListener('click', this.consoleMeAThing);
 	window.addEventListener('resize', this.controls.handleResize);
 
 };

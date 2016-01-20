@@ -7,6 +7,12 @@
 	font-size: 30px;
 
 	&--sound {
-		display: none;
+
+		opacity: 0;
+	}
+
+	&--action {
+
+		opacity: 0;
 	}
 }

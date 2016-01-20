@@ -12,16 +12,31 @@ function Mission01(){
 
 	this.addObjects = this.addObjects.bind(this);
 	this.introFinished = this.introFinished.bind(this);
+	this.hoverPortal = this.hoverPortal.bind(this);
+	this.closePortal = this.closePortal.bind(this);
+	this.transition = this.transition.bind(this);
 
-	this.movementSpeed = 120;
+	this.movementSpeed = 130;
 
 	this.groupName = 'garden';
 
 	this.section = document.getElementById('webGL');
 
+	this.portalSubtitles = document.getElementById('portal__subtitles');
+
+	this.portalSubtitlesTween = null;
+
 	this.portal = null;
 
-	this.debug = true;
+	this.isHoverPortal = false;
+
+	this.mousemovePortal = null;
+
+	this.clickPortal = null;
+
+	this.jumpToEnd = false;
+
+	this.initialized = false;
 
 }
 
@@ -32,6 +47,8 @@ Mission01.prototype.init = function() {
 	this.createObjects();
 
 	this.addListeners();
+
+	this.initialized = true;
 
 };
 
@@ -50,6 +67,8 @@ Mission01.prototype.addObjects = function(geometries) {
 	var meshes = null;
 	var hitbox = null;
 
+	console.log('prout')
+
 
 	meshes = this.groupLoader.createMeshes(geometries);
 
@@ -57,18 +76,14 @@ Mission01.prototype.addObjects = function(geometries) {
 
 	hitBox = scene.scene.getObjectByName('HouseMin');
 
-
 	TweenMax.set(this.section, { opacity: 0 } );
 	TweenMax.to(this.section, 1, { opacity: 1, display:'block' } );
 
-
 	camControls.init(scene.camera, scene.gui, hitBox);
 
+	raf.start();
 
-	if ( this.debug )
-		location.hash = 'mission01--portal';
-
-	else {
+	if ( this.jumpToEnd === false ) {
 	
 		camControls.controls.movementSpeed = 0;
 
@@ -76,10 +91,8 @@ Mission01.prototype.addObjects = function(geometries) {
 
 		sound.play();
 
-		raf.start();
 		
 	}
-
 
 };
 
@@ -92,7 +105,6 @@ Mission01.prototype.addListeners = function() {
 Mission01.prototype.introFinished = function() {
 
 	camControls.controls.movementSpeed = this.movementSpeed;
-
 };
 
 Mission01.prototype.getPortal = function() {
@@ -100,13 +112,52 @@ Mission01.prototype.getPortal = function() {
 	raf.start();
 
 	this.portal = scene.scene.getObjectByName('garden__portail');
-	this.portal = scene.scene.getObjectByName('garden__echelle');
 
-	this.portalSelector = new selector(scene.camera, this.portal);
+	this.portalSelector = new selector(scene.camera, this.portal, this.hoverPortal);
 
 	this.portalSelector.activate();
 
-	window.addEventListener('mousemove', this.portalSelector.refresh);
+	this.mousemovePortal = window.addEventListener('mousemove', this.portalSelector.update);
+
+	this.clickPortal = window.addEventListener('click', this.closePortal);
+
+};
+
+Mission01.prototype.hoverPortal = function() {
+
+	if ( this.portalSelector.hover ) {
+
+		TweenMax.to(this.portalSubtitles, 0.5, { opacity: 1, display:'block' } );
+
+	}
+	else {
+
+		TweenMax.to(this.portalSubtitles, 0.5, { opacity: 0, display:'none' } );
+
+	}
+
+};
+
+Mission01.prototype.closePortal = function() {
+
+	if( this.portalSelector.hover === false )
+		return;
+
+	window.removeEventListener('mousemove', this.portalSelector.update);
+
+	window.removeEventListener('click', this.closePortal);
+
+	this.portalSelector.desactivate();
+
+	this.portalDestinationX = this.portal.position.x + 500;
+
+	TweenMax.to( this.portal.position, 4, { x: this.portalDestinationX, onComplete: this.transition, ease: Power1.easeInOut } );
+
+};
+
+Mission01.prototype.transition = function() {
+
+	location.hash = "mission02--start";
 
 };
 

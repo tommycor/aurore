@@ -15,7 +15,7 @@ var dataModels = {
 			modelURL: 'house/house.json',
 			material: 'MeshLambertMaterial',
 			textureURL: '',
-			color: 0xBDBDBD,
+			color: 0x00B319,
 			emissive: 0x484848,
 			specular: 0x36CCD5,
 			wireframe: false,
@@ -460,8 +460,8 @@ var dataModels = {
 			scale: { x: 1, y: 1, z: 1 }
 		},
 		{
-			name: 'garden__portedentrée',
-			modelURL: 'garden/garden__portedentrée.json',
+			name: 'garden__portedentree',
+			modelURL: 'garden/garden__portedentree.json',
 			material: 'MeshLambertMaterial',
 			textureURL: '',
 			color: new THREE.Color( 0, 1, 0 ),

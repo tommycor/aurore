@@ -71,9 +71,9 @@ Scene.prototype.draw = function() {
 Scene.prototype.addFXAA = function() {
 
 	this.dpr = 1;
-	if (window.devicePixelRatio !== undefined) {
-		this.dpr = window.devicePixelRatio;
-	}
+	// if (window.devicePixelRatio !== undefined) {
+	// 	this.dpr = window.devicePixelRatio;
+	// }
 
 	this.fxaa = new THREE.ShaderPass( THREE.FXAAShader );
 	this.fxaa.uniforms.resolution.value.set(1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
@@ -177,10 +177,6 @@ Scene.prototype.resize = function() {
 	this.renderer.setSize(window.innerWidth, window.innerHeight);
 	this.fxaa.uniforms[ 'resolution' ].value = new THREE.Vector2( 1 / window.innerWidth * this.dpr, 1 / window.innerHeight * this.dpr);
 
-};
-
-Scene.prototype.consoleBitch = function(event) {
-	console.log('consoleBitch');
 };
 
 Scene.prototype.consoleBitch = function(event) {
