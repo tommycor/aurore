@@ -47,15 +47,22 @@ Sound.prototype.ended = function() {
 Sound.prototype.transition = function() {
 
 	switch(this.sound) {
+		
 	case 'start':
 		location.hash = 'mission01--walk';
 		break;
+
 	case 'sound__01':
 		if (config.gender === 'male')
 			location.hash = 'video01__male';
 		else
 			location.hash = 'video01__female';
 		break;
+
+	case 'sound__02':
+		location.hash = 'mission02--thermal';
+		break;
+		
 	default:
 		// do nothing;
 	}

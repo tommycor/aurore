@@ -7,6 +7,7 @@ var selector = require('../actions/selector');
 var groupLoader = require('../creators/groupLoader');
 
 var raf = require('../utils/raf');
+var loader = require('../utils/loader');
 
 function Mission01(){
 
@@ -30,10 +31,6 @@ function Mission01(){
 
 	this.isHoverPortal = false;
 
-	this.mousemovePortal = null;
-
-	this.clickPortal = null;
-
 	this.jumpToEnd = false;
 
 	this.initialized = false;
@@ -43,6 +40,8 @@ function Mission01(){
 Mission01.prototype.init = function() {
 
 	scene.init();
+
+	camControls.init(scene.camera, scene.gui);
 
 	this.createObjects();
 
@@ -60,28 +59,27 @@ Mission01.prototype.createObjects = function() {
 
 	this.groupPromise.then(this.addObjects, this.error);
 
+	loader.init(this.groupPromise.length);
+
 };
 
 Mission01.prototype.addObjects = function(geometries) {
 
 	var meshes = null;
-	var hitbox = null;
 
-	console.log('prout')
+	var hitBox = null;
 
+	loader.end();
 
 	meshes = this.groupLoader.createMeshes(geometries);
 
 	scene.addMeshes(meshes);
 
-	hitBox = scene.scene.getObjectByName('HouseMin');
+	hitBox = scene.scene.getObjectByName('HouseMin--garden');
 
 	TweenMax.set(this.section, { opacity: 0 } );
+
 	TweenMax.to(this.section, 1, { opacity: 1, display:'block' } );
-
-	camControls.init(scene.camera, scene.gui, hitBox);
-
-	raf.start();
 
 	if ( this.jumpToEnd === false ) {
 	
@@ -91,7 +89,10 @@ Mission01.prototype.addObjects = function(geometries) {
 
 		sound.play();
 
+		camControls.setObstacle(hitBox);
 		
+		raf.start();
+
 	}
 
 };
@@ -117,9 +118,9 @@ Mission01.prototype.getPortal = function() {
 
 	this.portalSelector.activate();
 
-	this.mousemovePortal = window.addEventListener('mousemove', this.portalSelector.update);
+	window.addEventListener('mousemove', this.portalSelector.update);
 
-	this.clickPortal = window.addEventListener('click', this.closePortal);
+	window.addEventListener('click', this.closePortal);
 
 };
 

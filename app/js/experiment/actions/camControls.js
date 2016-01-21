@@ -3,11 +3,11 @@ function CamControls(){
 
 }
 
-CamControls.prototype.init = function( camera, gui, obstacle ) {
+CamControls.prototype.init = function( camera, gui ) {
 	this.consoleMeAThing = this.consoleMeAThing.bind(this);
 
 	this.camera = camera;
-	this.obstacle = [obstacle];
+	this.obstacle = null;
 	this.clock = new THREE.Clock();
 
 	this.camera.position.x = 850;
@@ -19,7 +19,7 @@ CamControls.prototype.init = function( camera, gui, obstacle ) {
 
 	this.controls = new THREE.FirstPersonControls(camera);
 	this.controls.lookSpeed = 0.15;
-	this.controls.movementSpeed = 500;
+	this.controls.movementSpeed = 300;
 	this.controls.noFly = true;
 	this.controls.lookVertical = true;
 	this.controls.constrainVertical = true;
@@ -53,6 +53,12 @@ CamControls.prototype.render = function() {
 
 	this.getCollisions();
 	this.getHeight();
+};
+
+CamControls.prototype.setObstacle = function(obstacle) {
+
+	this.obstacle = [obstacle];
+
 };
 
 CamControls.prototype.getCollisions = function() {
