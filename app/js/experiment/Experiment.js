@@ -1,6 +1,7 @@
 var gender = require('./controllers/Gender');
 var mission01 = require('./controllers/Mission01');
 var mission02 = require('./controllers/Mission02');
+var mission03 = require('./controllers/Mission03');
 var video = require('./controllers/Video');
 
 function Experiment() {
@@ -23,12 +24,14 @@ Experiment.prototype.router = function() {
 	case 'gender':
 		gender.init();
 		break;
+
 	case 'videoIntro__male':
 		video.init('videoIntro__male');
 		break;
 	case 'videoIntro__female':
 		video.init('videoIntro__female');
 		break;
+
 	case 'mission01--start':
 		mission01.init();
 		break;
@@ -44,6 +47,7 @@ Experiment.prototype.router = function() {
 	case 'mission01--portal':
 		mission01.getPortal();
 		break;
+
 	case 'mission02--start':
 		mission02.init();
 		break;
@@ -52,6 +56,10 @@ Experiment.prototype.router = function() {
 		break;
 	case 'mission02--book':
 		mission02.book();
+		break;
+
+	case 'mission03--start':
+		mission03.init();
 		break;
 	case ' ':
 		mission02.thermal();

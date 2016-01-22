@@ -28,6 +28,9 @@ function Mission02( ) {
 
 	this.readBook = this.readBook.bind(this);
 
+	this.bookCloser = this.bookCloser.bind(this);
+
+
 	this.groupName = 'groundfloor';
 
 	this.initialized = false;
@@ -42,7 +45,11 @@ function Mission02( ) {
 
 	this.bookSubtitles = document.getElementById('thermal__subtitles');
 
-	this.jumpToEnd = false;
+	this.jumpToEnd = true;
+
+	this.bookClose = document.getElementById('book__close');
+
+	this.bookPopup = document.getElementById('book__popup');
 
 }
 
@@ -212,6 +219,34 @@ Mission02.prototype.readBook = function() {
 	window.removeEventListener('mousemove', this.bookSelector.update);
 
 	window.removeEventListener('click', this.readBook);
+
+	this.popupBook();
+
+};
+
+Mission02.prototype.popupBook = function() {
+
+	TweenMax.to(this.bookPopup, 1, { opacity: 1, display:'block' } );
+
+	this.bookClose.addEventListener('click', this.bookCloser);
+
+	raf.stop();
+
+};
+
+Mission02.prototype.bookCloser = function() {
+
+	this.bookClose.removeEventListener('click', this.bookCloser);
+
+	TweenMax.to(this.bookPopup, 1, { opacity: 0, display:'none', onComplete: this.transition } );
+
+};
+
+Mission02.prototype.transition = function() {
+
+	raf.start();
+
+	location.hash = 'mission03--start'
 
 };
 
