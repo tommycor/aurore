@@ -50,6 +50,12 @@ Experiment.prototype.router = function() {
 	case 'mission02--thermal':
 		mission02.thermal();
 		break;
+	case 'mission02--book':
+		mission02.book();
+		break;
+	case ' ':
+		mission02.thermal();
+		break;
 	default:
 		location.hash = 'gender';
 	}
