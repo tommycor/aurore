@@ -866,6 +866,20 @@ var dataModels = {
 			scale: { x: 1, y: 1, z: 1 }
 		},
 		{
+			name: 'garden__arbreetsouches',
+			modelURL: 'garden/garden__arbreetsouches.json',
+			material: 'MeshLambertMaterial',
+			textureURL: '',
+			color: 0x00ff00,
+			emissive: 0x1CA800,
+			wireframe: false,
+			visible: true,
+			group: 'garden',
+			position: {	x: 0, y: 0,	z: 0 },
+			rotation: { x: 0, y: 0, z: 0 },
+			scale: { x: 1, y: 1, z: 1 }
+		},
+		{
 			name: 'groundfloor__arbuste',
 			modelURL: 'groundfloor/groundfloor__arbuste.json',
 			material: 'MeshLambertMaterial',

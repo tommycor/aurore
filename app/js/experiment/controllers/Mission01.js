@@ -99,7 +99,9 @@ Mission01.prototype.addObjects = function(geometries) {
 
 Mission01.prototype.addListeners = function() {
 
-	sound.player.addEventListener('ended', this.introFinished );
+	if ( this.jumpToEnd === false )
+
+		sound.player.addEventListener('ended', this.introFinished );
 
 };
 
