@@ -43,9 +43,9 @@ function Mission02( ) {
 
 	this.objectsColors = [];
 
-	this.bookSubtitles = document.getElementById('thermal__subtitles');
+	this.bookSubtitles = document.getElementById('book__subtitles');
 
-	this.jumpToEnd = true;
+	this.jumpToEnd = false;
 
 	this.bookClose = document.getElementById('book__close');
 
@@ -98,7 +98,8 @@ Mission02.prototype.addObjects = function(geometries) {
 
 	camControls.setObstacle(hitBox);
 
-	raf.start();
+	if (raf.running === false)
+		raf.start();
 
 	if ( this.jumpToEnd === false ) {
 	
@@ -107,11 +108,8 @@ Mission02.prototype.addObjects = function(geometries) {
 		sound.play();
 
 	}
-
 	else {
-
-		setTimeout( this.vision, 1000);
-
+		this.transition();
 	}
 
 };

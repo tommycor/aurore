@@ -1,5 +1,6 @@
 var Config = {
-	gender: 'male'
+	gender: 'male',
+	backpack: []
 };
 
 module.exports = Config;

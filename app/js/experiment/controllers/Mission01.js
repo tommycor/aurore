@@ -39,6 +39,8 @@ function Mission01(){
 
 Mission01.prototype.init = function() {
 
+	this.initialized = true;
+
 	scene.init();
 
 	camControls.init(scene.camera, scene.gui);
@@ -46,8 +48,6 @@ Mission01.prototype.init = function() {
 	this.createObjects();
 
 	this.addListeners();
-
-	this.initialized = true;
 
 };
 
@@ -91,7 +91,8 @@ Mission01.prototype.addObjects = function(geometries) {
 
 		camControls.setObstacle(hitBox);
 		
-		raf.start();
+		if (raf.running === false)
+			raf.start();
 
 	}
 
@@ -149,6 +150,10 @@ Mission01.prototype.closePortal = function() {
 	window.removeEventListener('mousemove', this.portalSelector.update);
 
 	window.removeEventListener('click', this.closePortal);
+	
+	TweenMax.to(this.portalSubtitles, 0.5, { opacity: 1, display:'block' } );
+
+	TweenMax.to(this.portalSubtitles, 0.5, { opacity: 0, display:'none' } );
 
 	this.portalSelector.desactivate();
 
