@@ -85,6 +85,10 @@ Mission01.prototype.addObjects = function(geometries) {
 	
 		camControls.controls.movementSpeed = 0;
 
+		this.portal = scene.scene.getObjectByName('garden__portail');
+
+		this.portal.position.x = 500;
+
 		sound.init('start');
 
 		sound.play();
@@ -150,8 +154,6 @@ Mission01.prototype.closePortal = function() {
 	window.removeEventListener('mousemove', this.portalSelector.update);
 
 	window.removeEventListener('click', this.closePortal);
-	
-	TweenMax.to(this.portalSubtitles, 0.5, { opacity: 1, display:'block' } );
 
 	TweenMax.to(this.portalSubtitles, 0.5, { opacity: 0, display:'none' } );
 

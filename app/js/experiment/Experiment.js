@@ -61,7 +61,12 @@ Experiment.prototype.router = function() {
 	case 'mission03--start':
 		mission03.init();
 		break;
-	case ' ':
+
+	case 'mission03--windows':
+		mission03.windows();
+		break;
+
+	case '':
 		mission02.thermal();
 		break;
 	default:

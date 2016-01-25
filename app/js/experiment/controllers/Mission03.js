@@ -1,5 +1,6 @@
 var mission02 = require('../controllers/mission02');
 var scene = require('../controllers/scene');
+var sound = require('../controllers/Sound');
 
 var raf = require('../utils/raf');
 var config = require('../utils/config');
@@ -17,11 +18,19 @@ function Mission03() {
 
 	this.clickSelectors = this.clickSelectors.bind(this);
 
+	this.windows = this.windows.bind(this);
+
+	this.windowsHover = this.windowsHover.bind(this);
+
+	this.windowsClick = this.windowsClick.bind(this);
+
 	this.glovesSubtitles = document.getElementById('gloves__subtitles');
 
 	this.meterSubtitles = document.getElementById('meter__subtitles');
 
 	this.windowSubtitles = document.getElementById('window__subtitles');
+
+	this.windowsSubtitles = document.getElementById('windows__subtitles');
 
 	this.meterObject = null;
 
@@ -52,7 +61,7 @@ Mission03.prototype.init = function() {
 	}
 
 	if( this.jumpToEnd )
-		setTimeout(this.createSelectors, 4000);
+		setTimeout(this.windows, 4000);
 	else
 		this.createSelectors();
 
@@ -159,8 +168,69 @@ Mission03.prototype.clickSelectors = function() {
 
 	}
 
-	if ( hasInTab('meter', config.backpack) && hasInTab('windows', config.backpack) && hasInTab('gloves', config.backpack) )
-		alert('Poils de bite!')
+	if ( hasInTab('meter', config.backpack) && hasInTab('windows', config.backpack) && hasInTab('gloves', config.backpack) ) {
+
+		this.meterSelector.desactivate();
+
+		this.windowSelector.desactivate();
+
+		this.glovesSelector.desactivate();
+
+		window.removeEventListener('mousemove', this.updateSelectors);
+
+		window.removeEventListener('click', this.clickSelectors);
+
+	
+		sound.init('sound__04');
+
+		sound.play();
+
+	}
+		
+};
+
+Mission03.prototype.windows = function() {
+
+	this.windowsObject = scene.scene.getObjectByName('garden__allvitresverre--volets');
+
+	this.windowsSelector = new selector(scene.camera, this.windowsObject, this.windowsHover);
+
+	this.windowsSelector.activate();
+
+
+	window.addEventListener('mousemove', this.windowsSelector.update);
+
+	window.addEventListener('click', this.windowsClick);
+
+};
+
+Mission03.prototype.windowsHover = function() {
+
+	if ( this.windowsSelector.hover ) {
+
+		TweenMax.to(this.windowsSubtitles, 0.5, { opacity: 1, display:'block' } );
+
+	}
+	else {
+
+		TweenMax.to(this.windowsSubtitles, 0.5, { opacity: 0, display:'none' } );
+
+	}
+	
+};
+
+Mission03.prototype.windowsClick = function() {
+
+	if( this.windowsSelector.hover === false )
+		return;
+
+	this.windowsSelector.desactivate();
+	
+	TweenMax.to(this.windowsSubtitles, 0.5, { opacity: 0, display:'none' } );
+
+	window.removeEventListener('mousemove', this.windowsSelector.update);
+
+	window.removeEventListener('click', this.windowsClick);
 
 };
 
