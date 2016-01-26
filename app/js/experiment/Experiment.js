@@ -66,9 +66,6 @@ Experiment.prototype.router = function() {
 		mission03.windows();
 		break;
 
-	case '':
-		mission02.thermal();
-		break;
 	default:
 		location.hash = 'gender';
 	}

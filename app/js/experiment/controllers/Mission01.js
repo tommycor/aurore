@@ -159,7 +159,7 @@ Mission01.prototype.closePortal = function() {
 
 	this.portalSelector.desactivate();
 
-	this.portalDestinationX = this.portal.position.x + 500;
+	this.portalDestinationX = 0;
 
 	TweenMax.to( this.portal.position, 4, { x: this.portalDestinationX, onComplete: this.transition, ease: Power1.easeInOut } );
 

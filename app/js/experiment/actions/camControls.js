@@ -37,7 +37,7 @@ CamControls.prototype.init = function( camera, gui ) {
 
 	this.caster = new THREE.Raycaster();
 	this.distHorizontal = 15;
-	this.distMinBottom = 100;
+	this.distMinBottom = 120;
 	this.distMaxBottom = this.distMinBottom + 10;
 
 	// window.addEventListener('click', this.consoleMeAThing);

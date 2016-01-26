@@ -44,7 +44,7 @@ function Mission03() {
 
 	this.glovesSelector = null;
 
-	this.jumpToEnd = true;
+	this.jumpToEnd = false;
 
 }
 
@@ -61,7 +61,7 @@ Mission03.prototype.init = function() {
 	}
 
 	if( this.jumpToEnd )
-		setTimeout(this.windows, 4000);
+		setTimeout(this.createSelectors, 4000);
 	else
 		this.createSelectors();
 
@@ -225,7 +225,7 @@ Mission03.prototype.windowsClick = function() {
 		return;
 
 	this.windowsSelector.desactivate();
-	
+
 	TweenMax.to(this.windowsSubtitles, 0.5, { opacity: 0, display:'none' } );
 
 	window.removeEventListener('mousemove', this.windowsSelector.update);
