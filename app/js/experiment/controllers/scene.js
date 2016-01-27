@@ -9,8 +9,6 @@ function Scene() {
 	this.ratio = window.innerWidth / window.innerHeight;
 
 	console.log('Initialazing draw!');
-
-	console.log('DRAW');
 }
 
 Scene.prototype.init = function() {

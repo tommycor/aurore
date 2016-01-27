@@ -64,10 +64,14 @@ Sound.prototype.transition = function() {
 		break;
 
 	case 'sound__03':
-		location.hash = 'mission02--book';
+		location.hash = 'mission02--activatethermal';
 		break;
 
 	case 'sound__04':
+		location.hash = 'mission02--book';
+		break;
+
+	case 'sound__05':
 		location.hash = 'mission03--windows';
 		break;
 		

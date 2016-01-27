@@ -23,6 +23,8 @@ Gender.prototype.genderSelection = function(event) {
 
 	this.id = event.target.id;
 
+	console.log(this.id);
+
 	if( this.id === 'gender__male' || this.id === 'gender__female' ){
 
 		TweenMax.set(this.section, { opacity: 1 } );

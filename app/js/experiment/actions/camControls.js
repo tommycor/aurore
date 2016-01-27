@@ -11,7 +11,7 @@ CamControls.prototype.init = function( camera, gui ) {
 	this.clock = new THREE.Clock();
 
 	this.camera.position.x = 850;
-	this.camera.position.y = 101;
+	this.camera.position.y = 121;
 	this.camera.position.z = 900;
 	this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 

@@ -23,9 +23,9 @@ function thermalVision(objects, coldOnes) {
 
 			this.objectsRealEmissive[i] = current.material.emissive.clone();
 
-			current.material.color = new THREE.Color( 0xFFC600 );
+			current.material.color = new THREE.Color( 0xE24A00 );
 
-			current.material.emissive = new THREE.Color( 0xD46307 );
+			current.material.emissive = new THREE.Color( 0xFF2020 );
 
 		}
 
@@ -35,9 +35,9 @@ function thermalVision(objects, coldOnes) {
 
 		current = this.coldOnes[i];
 
-		current.material.color = new THREE.Color( 0x3BFFE1 );
+		current.material.color = new THREE.Color( 0x2951FF );
 
-		current.material.emissive = new THREE.Color( 0x37A3FF );
+		current.material.emissive = new THREE.Color( 0x002AFF );
 
 	}
 

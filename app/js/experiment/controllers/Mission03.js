@@ -44,7 +44,7 @@ function Mission03() {
 
 	this.glovesSelector = null;
 
-	this.jumpToEnd = false;
+	this.jumpToEnd = true;
 
 }
 
@@ -61,7 +61,7 @@ Mission03.prototype.init = function() {
 	}
 
 	if( this.jumpToEnd )
-		setTimeout(this.createSelectors, 4000);
+		setTimeout(this.createSelectors, 5000);
 	else
 		this.createSelectors();
 
@@ -181,7 +181,7 @@ Mission03.prototype.clickSelectors = function() {
 		window.removeEventListener('click', this.clickSelectors);
 
 	
-		sound.init('sound__04');
+		sound.init('sound__05');
 
 		sound.play();
 

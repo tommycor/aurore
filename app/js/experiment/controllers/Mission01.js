@@ -17,7 +17,7 @@ function Mission01(){
 	this.closePortal = this.closePortal.bind(this);
 	this.transition = this.transition.bind(this);
 
-	this.movementSpeed = 130;
+	this.movementSpeed = 170;
 
 	this.groupName = 'garden';
 
@@ -75,7 +75,7 @@ Mission01.prototype.addObjects = function(geometries) {
 
 	scene.addMeshes(meshes);
 
-	hitBox = scene.scene.getObjectByName('HouseMin--garden');
+	hitBox = scene.scene.getObjectByName('minHouse--mission01');
 
 	TweenMax.set(this.section, { opacity: 0 } );
 

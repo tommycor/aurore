@@ -30,6 +30,10 @@ function Mission02( ) {
 
 	this.bookCloser = this.bookCloser.bind(this);
 
+	this.activateThermal = this.activateThermal.bind(this);
+
+	this.desactivateVision = this.desactivateVision.bind(this);
+
 
 	this.groupName = 'groundfloor';
 
@@ -94,7 +98,7 @@ Mission02.prototype.addObjects = function(geometries) {
 
 	scene.addMeshes(meshes);
 
-	hitBox = scene.scene.getObjectByName('HouseMin--groundfloor');
+	hitBox = scene.scene.getObjectByName('minHouse--mission02');
 
 	camControls.setObstacle(hitBox);
 
@@ -115,6 +119,14 @@ Mission02.prototype.addObjects = function(geometries) {
 };
 
 Mission02.prototype.thermal = function() {
+
+	sound.init('sound__03');
+
+	setTimeout(sound.play, 15000);
+
+};
+
+Mission02.prototype.activateThermal = function() {
 
 	this.thermalObject = scene.scene.getObjectByName('groundfloor__table--lunette');
 
@@ -160,6 +172,7 @@ Mission02.prototype.thermalPicked = function() {
 
 	this.vision();
 
+	setTimeout(this.desactivateVision, 10000);
 };
 
 Mission02.prototype.vision = function() {
@@ -168,9 +181,15 @@ Mission02.prototype.vision = function() {
 
 	this.thermalVision = new ThermalVision(scene.scene.children, [this.windows]);
 
-	sound.init('sound__03');
+};
 
-	setTimeout(sound.play, 2000);
+Mission02.prototype.desactivateVision = function() {
+
+	this.thermalVision.desactivate();
+
+	sound.init('sound__04');
+
+	sound.play();
 
 };
 

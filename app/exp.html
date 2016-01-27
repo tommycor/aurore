@@ -12,11 +12,15 @@
 		<!-- GENDER -->
 		<section id="gender" class="section gender">
 			<div class="gender__container">
-				<h1 class="gender__container__title" >Choisis ton personnage!</h1>
 				<div class="gender__container__buttons" id="gender__buttons">
-					<button class="gender__container__buttons__element" id="gender__male">Garçon</button>
-					<button class="gender__container__buttons__element" id="gender__female">Fille</button>
+					<button class="gender__container__buttons__element"><img id="gender__male" class="gender__container__buttons__element__img" src="img/boy.png"></button>
+					<button class="gender__container__buttons__element"><img id="gender__female" class="gender__container__buttons__element__img" src="img/girl.png"></button>
 				</div>
+			</div>
+			<div class="indicationsContainer">
+				<p class="indicationsContainer__text">
+					Choisis ton personnage.
+				</p>
 			</div>
 		</section>
 
@@ -58,7 +62,12 @@
 				<div class="loading__container__bar">
 					<div class="loading__container__bar__progress" id="progressBar"></div>
 				</div>
-				<div class="loading__container__text">Chargement...</div>
+				<div class="loading__container__text">CHARGEMENT...</div>
+			</div>
+			<div class="indicationsContainer">
+				<p class="indicationsContainer__text">
+					Pour ameliorer ton experience de jeu, passe en plein ecran <img class="indicationsContainer__text__img" src="img/fullscreen.png"> et allume le son <img class="indicationsContainer__text__img" src="img/sound.png"> de ton ordinateur.
+				</p>
 			</div>
 		</section>
 
@@ -67,20 +76,23 @@
 			<div class="HUD">
 				Bonjour, je s'appelle HUD.
 			</div>
-			<p class="subtitles subtitles--sound" id="start__subtitles__male">J'aime me beurrer la biscotte. J'aime le bruit blanc de l'eau. J'aime quand on m'enduit d'huile.</p>
-			<p class="subtitles subtitles--sound" id="start__subtitles__female">-Est-ce que ça va?<br />-Ca va aller... C'est juste que... J'ai un peu vomit dans ma bouche.</p>
+			<p class="subtitles subtitles--sound" id="start__subtitles__male">Nom de Zeus ! Tu es sur la planete Aurore ! Fais attention le climat est capricieux et passe de la canicule au froid glacial ! Tu n’es pas pret pour ces temperatures, il faut que tu te proteges ! Tu as de la chance, j’ai tout ce qu’il faut dans la maison ! A toi de montrer tes capacites pour adapter la maison aux changements climatiques !</p>
+			<p class="subtitles subtitles--sound" id="start__subtitles__female">Nom de Zeus ! Tu es sur la planete Aurore ! Fais attention le climat est capricieux et passe de la canicule au froid glacial ! Tu n’es pas pret pour ces temperatures, il faut que tu te proteges ! Tu as de la chance, j’ai tout ce qu’il faut dans la maison ! A toi de montrer tes capacites pour adapter la maison aux changements climatiques !</p>
 
-			<p class="subtitles subtitles--sound" id="sound__01__subtitles__male">O Fortuna, velut luna statu variabilis, semper crescis aut decrescis;</p>
-			<p class="subtitles subtitles--sound" id="sound__01__subtitles__female">Vita detestabilis nunc obdurat et tunc curat</p>
+			<p class="subtitles subtitles--sound" id="sound__01__subtitles__male">Attention ! Je crois savoir que la population de la planete n’est pas tres accueillante, tu devrais vite fermer le portail electrique ! </p>
+			<p class="subtitles subtitles--sound" id="sound__01__subtitles__female">Attention ! Je crois savoir que la population de la planete n’est pas tres accueillante, tu devrais vite fermer le portail electrique ! </p>
 
-			<p class="subtitles subtitles--sound" id="sound__02__subtitles__male">It's one small step for men.</p>
-			<p class="subtitles subtitles--sound" id="sound__02__subtitles__female">It's one small step for women.</p>
+			<p class="subtitles subtitles--sound" id="sound__02__subtitles__male">Tu as de quoi tenir un petit moment avec l’energie restante, mais ne tarde pas a trouver de quoi produire de l’electricite, sinon le portail s’ouvrira et ils parviendront a rentrer !</p>
+			<p class="subtitles subtitles--sound" id="sound__02__subtitles__female">Tu as de quoi tenir un petit moment avec l’energie restante, mais ne tarde pas a trouver de quoi produire de l’electricite, sinon le portail s’ouvrira et ils parviendront a rentrer !</p>
 
-			<p class="subtitles subtitles--sound" id="sound__03__subtitles__male">Sous-titres de la voixoff n°3.</p>
-			<p class="subtitles subtitles--sound" id="sound__03__subtitles__female">Sous-titres de la voixoff n°3.</p>
+			<p class="subtitles subtitles--sound" id="sound__03__subtitles__male">Le froid s’engouffre partout dans la maison !  Elle n’est pas faite pour resister à un vent si froid ! Trouve mes lunettes thermiques pour voir ou s’infiltre le froid !</p>
+			<p class="subtitles subtitles--sound" id="sound__03__subtitles__female">Le froid s’engouffre partout dans la maison !  Elle n’est pas faite pour resister à un vent si froid ! Trouve mes lunettes thermiques pour voir ou s’infiltre le froid !</p>
 
-			<p class="subtitles subtitles--sound" id="sound__04__subtitles__male">Sous-titres de la voixoff n°4.</p>
-			<p class="subtitles subtitles--sound" id="sound__04__subtitles__female">Sous-titres de la voixoff n°4.</p>
+			<p class="subtitles subtitles--sound" id="sound__04__subtitles__male">Trouve tous les outils pour isoler la maison du froid ! Depeche toi sinon la temperature va continuer de baisser ! Je dois avoir un livre quelque part qui explique comment s’y prendre ! </p>
+			<p class="subtitles subtitles--sound" id="sound__04__subtitles__female">Trouve tous les outils pour isoler la maison du froid ! Depeche toi sinon la temperature va continuer de baisser ! Je dois avoir un livre quelque part qui explique comment s’y prendre ! </p>
+
+			<p class="subtitles subtitles--sound" id="sound__05__subtitles__male">Tu as maintenant tout ce qu’il faut pour changer les vitres de la maison, A toi de jouer ! </p>
+			<p class="subtitles subtitles--sound" id="sound__05__subtitles__female">Tu as maintenant tout ce qu’il faut pour changer les vitres de la maison, A toi de jouer ! </p>
 
 			<p class="subtitles subtitles--action" id="portal__subtitles">Clique pour fermer le portail</p>
 			<p class="subtitles subtitles--action" id="thermal__subtitles">Clique pour mettre les lunettes à vision thermiques</p>

@@ -1,6 +1,7 @@
 .gender {
 	opacity: 0;
 	color: white;
+	background-image : url(../img/background);
 
 	&__container {
 		@extend %vertical-center;
@@ -16,7 +17,17 @@
 		&__buttons {
 			@extend %horizontal-center-relative;
 
-			width: 400px;
+			width: 700px;
+
+			&__element {
+
+				&__img {
+					
+					display: inline;
+					width: 180px;
+					margin: 0 80px;
+				}
+			}
 		}
 	}
 }

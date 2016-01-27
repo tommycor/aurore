@@ -2,7 +2,7 @@
 
 @import "base/normalize", "base/general";
 
-@import  "config/extends", "config/mixins";
+@import  "config/extends", "config/mixins", "config/fonts", "config/colors", "config/sizes";
 
 @import "modules/exp__exp.scss",
 		"modules/exp__gender.scss",
@@ -11,4 +11,5 @@
 		"modules/exp__subtitles.scss",
 		"modules/exp__loader.scss",
 		"modules/exp__popup.scss",
+		"modules/exp__indicationsContainer.scss",
 		"test_modules/test.scss";
