@@ -17,7 +17,7 @@ function Mission01(){
 	this.closePortal = this.closePortal.bind(this);
 	this.transition = this.transition.bind(this);
 
-	this.movementSpeed = 170;
+	this.movementSpeed = 230;
 
 	this.groupName = 'garden';
 

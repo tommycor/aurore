@@ -1,0 +1,16 @@
+{
+    "normals": [0.08713,0,0.996185],
+    "metadata": {
+        "normals": 1,
+        "generator": "io_three",
+        "uvs": 0,
+        "vertices": 4,
+        "version": 3,
+        "faces": 1,
+        "type": "Geometry"
+    },
+    "uvs": [],
+    "vertices": [-127.702,122.9,-59.3276,-223.337,122.9,-50.9607,-223.337,76.9,-50.9607,-127.702,76.9,-59.3276],
+    "faces": [33,0,1,2,3,0,0,0,0],
+    "name": "2Geometry"
+}

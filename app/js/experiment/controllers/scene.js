@@ -30,7 +30,7 @@ Scene.prototype.draw = function() {
 
 	////RENDERER
 	this.renderer = new THREE.WebGLRenderer();
-	this.renderer.setClearColor(0x000000, 1.0);
+	this.renderer.setClearColor(0x06164A, 1.0);
 	this.renderer.setSize(window.innerWidth, window.innerHeight);
 	this.renderer.shadowMapEnabled = true;
 

@@ -45,6 +45,8 @@ function Mission02( ) {
 
 	this.windows = null;
 
+	this.door = null;
+
 	this.objectsColors = [];
 
 	this.bookSubtitles = document.getElementById('book__subtitles');
@@ -93,6 +95,10 @@ Mission02.prototype.addObjects = function(geometries) {
 	var hitBox = null;
 
 	loader.end();
+
+	this.door = scene.scene.getObjectByName('garden__portedentree');
+
+	scene.scene.remove(this.door);
 
 	meshes = this.groupLoader.createMeshes(geometries);
 
