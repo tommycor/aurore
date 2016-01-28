@@ -5,14 +5,117 @@
 	<meta name="keywords" content="Gulp, Vagrant, Angular">
 	<meta name="author" content="Tommy Cornilleau">
 	<link type="text/css" rel="stylesheet" href="css/main.css">
-	<link type="text/css" rel="stylesheet" href="libs/cssLibs.css">
 </head>
 <body>
-	<h1>Hello, I'm the Title</h1>
-	<div class="myDiv large-12 small-5 columns">
-		<div class="myDiv container">You're one, ugly... motherfucker div.</div>
+	<div id="exp" class="exp">
+
+		<!-- GENDER -->
+		<section id="gender" class="section gender">
+			<div class="gender__container">
+				<div class="gender__container__buttons" id="gender__buttons">
+					<button class="gender__container__buttons__element"><img id="gender__male" class="gender__container__buttons__element__img" src="img/boy.png"></button>
+					<button class="gender__container__buttons__element"><img id="gender__female" class="gender__container__buttons__element__img" src="img/girl.png"></button>
+				</div>
+			</div>
+			<div class="indicationsContainer">
+				<p class="indicationsContainer__text">
+					Choisis ton personnage.
+				</p>
+			</div>
+		</section>
+
+		<!-- VIDEO INTRO -->
+		<section class="section video" >
+			<button class="video__next">Passer la vidéo</button>
+			<p class="subtitles" id="videoIntro__subtitles__male"></p>
+			<video id="videoIntro__male" class="video">
+				<source src="videos/videoIntro__male--720.mp4" type="video/mp4">
+			</video>
+		</section>
+		<section class="section video" >
+			<button class="video__next">Passer la vidéo</button>
+			<p class="subtitles" id="videoIntro__subtitles__female"></p>
+			<video id="videoIntro__female" class="video">
+				<source src="videos/videoIntro__female.mp4" type="video/mp4">
+			</video>
+		</section>
+
+		<!-- VIDEO01 -->
+		<section class="section video" >
+			<button class="video__next">Passer la vidéo</button>
+			<p class="subtitles" id="video01__subtitles__male"></p>
+			<video id="video01__male" class="video">
+				<source src="videos/video01__male--720.mp4" type="video/mp4">
+			</video>
+		</section>
+		<section class="section video" >
+			<button class="video__next">Passer la vidéo</button>
+			<p class="subtitles" id="video01__subtitles__female"></p>
+			<video id="video01__female" class="video">
+				<source src="videos/video01__female.mp4" type="video/mp4">
+			</video>
+		</section>
+
+		<!-- LOADER -->
+		<section class="loading section" id="loader">
+			<div class="loading__container">
+				<div class="loading__container__bar">
+					<div class="loading__container__bar__progress" id="progressBar"></div>
+				</div>
+				<div class="loading__container__text">CHARGEMENT...</div>
+			</div>
+			<div class="indicationsContainer">
+				<p class="indicationsContainer__text">
+					Pour ameliorer ton experience de jeu, passe en plein ecran <img class="indicationsContainer__text__img" src="img/fullscreen.png"> et allume le son <img class="indicationsContainer__text__img" src="img/sound.png"> de ton ordinateur.
+				</p>
+			</div>
+		</section>
+
+		<!-- WEBGL -->
+		<section id="webGL" class="section exp">
+			<div class="HUD">
+				Bonjour, je s'appelle HUD.
+			</div>
+			<p class="subtitles subtitles--sound" id="start__subtitles__male">Nom de Zeus ! Tu es sur la planete Aurore ! Fais attention le climat est capricieux et passe de la canicule au froid glacial ! Tu n’es pas pret pour ces temperatures, il faut que tu te proteges ! Tu as de la chance, j’ai tout ce qu’il faut dans la maison ! A toi de montrer tes capacites pour adapter la maison aux changements climatiques !</p>
+			<p class="subtitles subtitles--sound" id="start__subtitles__female">Nom de Zeus ! Tu es sur la planete Aurore ! Fais attention le climat est capricieux et passe de la canicule au froid glacial ! Tu n’es pas pret pour ces temperatures, il faut que tu te proteges ! Tu as de la chance, j’ai tout ce qu’il faut dans la maison ! A toi de montrer tes capacites pour adapter la maison aux changements climatiques !</p>
+
+			<p class="subtitles subtitles--sound" id="sound__01__subtitles__male">Attention ! Je crois savoir que la population de la planete n’est pas tres accueillante, tu devrais vite fermer le portail electrique ! </p>
+			<p class="subtitles subtitles--sound" id="sound__01__subtitles__female">Attention ! Je crois savoir que la population de la planete n’est pas tres accueillante, tu devrais vite fermer le portail electrique ! </p>
+
+			<p class="subtitles subtitles--sound" id="sound__02__subtitles__male">Tu as de quoi tenir un petit moment avec l’energie restante, mais ne tarde pas a trouver de quoi produire de l’electricite, sinon le portail s’ouvrira et ils parviendront a rentrer !</p>
+			<p class="subtitles subtitles--sound" id="sound__02__subtitles__female">Tu as de quoi tenir un petit moment avec l’energie restante, mais ne tarde pas a trouver de quoi produire de l’electricite, sinon le portail s’ouvrira et ils parviendront a rentrer !</p>
+
+			<p class="subtitles subtitles--sound" id="sound__03__subtitles__male">Le froid s’engouffre partout dans la maison !  Elle n’est pas faite pour resister à un vent si froid ! Trouve mes lunettes thermiques pour voir ou s’infiltre le froid !</p>
+			<p class="subtitles subtitles--sound" id="sound__03__subtitles__female">Le froid s’engouffre partout dans la maison !  Elle n’est pas faite pour resister à un vent si froid ! Trouve mes lunettes thermiques pour voir ou s’infiltre le froid !</p>
+
+			<p class="subtitles subtitles--sound" id="sound__04__subtitles__male">Trouve tous les outils pour isoler la maison du froid ! Depeche toi sinon la temperature va continuer de baisser ! Je dois avoir un livre quelque part qui explique comment s’y prendre ! </p>
+			<p class="subtitles subtitles--sound" id="sound__04__subtitles__female">Trouve tous les outils pour isoler la maison du froid ! Depeche toi sinon la temperature va continuer de baisser ! Je dois avoir un livre quelque part qui explique comment s’y prendre ! </p>
+
+			<p class="subtitles subtitles--sound" id="sound__05__subtitles__male">Tu as maintenant tout ce qu’il faut pour changer les vitres de la maison, A toi de jouer ! </p>
+			<p class="subtitles subtitles--sound" id="sound__05__subtitles__female">Tu as maintenant tout ce qu’il faut pour changer les vitres de la maison, A toi de jouer ! </p>
+
+			<p class="subtitles subtitles--action" id="portal__subtitles">Clique pour fermer le portail</p>
+			<p class="subtitles subtitles--action" id="thermal__subtitles">Clique pour mettre les lunettes à vision thermiques</p>
+			<p class="subtitles subtitles--action" id="book__subtitles">Clique pour lire le livre</p>
+			<p class="subtitles subtitles--action" id="gloves__subtitles">Mettre dans mon sac</p>
+			<p class="subtitles subtitles--action" id="window__subtitles">Mettre dans mon sac</p>
+			<p class="subtitles subtitles--action" id="meter__subtitles">Mettre dans mon sac</p>
+			<p class="subtitles subtitles--action" id="windows__subtitles">Clique pour changer les vitres</p>
+
+			<div class="popup book" id="book__popup">
+				<button class="popup__close" id="book__close">Fermer le livre</button>
+				<div class="popup__container">
+					<img src="img/page__book.jpg" class="popup__container__img">
+				</div>
+			</div>
+		</section>
+
 	</div>
-	<div class="plop"></div>
+	<audio id="soundPlayer">
+	  <!-- <source id="sourceOgg" src="" type="audio/ogg" /> -->
+	  <source id="sourceMp3" src="" type="audio/mp3" />
+	  Your browser does not support the audio element.
+	</audio>
 	<script type="text/javascript" src="libs/libs.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </body>

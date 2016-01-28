@@ -48,9 +48,9 @@ Scene.prototype.draw = function() {
 	this.scene.add(this.spotLight);
 
 
-	this.addControlGui();
+	// this.addControlGui();
 
-	this.addStatsObject();
+	// this.addStatsObject();
 
 	this.composer = new THREE.EffectComposer( this.renderer );
 
@@ -107,7 +107,7 @@ Scene.prototype.addSSAO = function() {
 
 Scene.prototype.render = function() {
 
-	this.stats.update();
+	// this.stats.update();
 	// this.renderer.render( this.scene, this.camera );
 
 	this.scene.overrideMaterial = this.depthMaterial;

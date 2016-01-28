@@ -4,7 +4,7 @@ var Experiment = require('./experiment/Experiment');
 
 var fakePath = location.pathname.replace(location.hash, '');
 
-if (fakePath === '/dist/exp.html')
+if (fakePath === '/dist/')
 {
 	var experiment = new Experiment();
 }
