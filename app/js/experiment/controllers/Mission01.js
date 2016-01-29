@@ -11,38 +11,51 @@ var loader = require('../utils/loader');
 
 function Mission01(){
 
+	// BINDING FUNCTIONS
 	this.addObjects = this.addObjects.bind(this);
 	this.introFinished = this.introFinished.bind(this);
 	this.hoverPortal = this.hoverPortal.bind(this);
 	this.closePortal = this.closePortal.bind(this);
 	this.transition = this.transition.bind(this);
 
+	// DECLARING VARIABLES
+	// Deplacement speed
 	this.movementSpeed = 230;
 
+	// group to load
 	this.groupName = 'garden';
 
+	// webGL section
 	this.section = document.getElementById('webGL');
 
+	// sound subititle
 	this.portalSubtitles = document.getElementById('portal__subtitles');
 
+	// tween sound subtitle
 	this.portalSubtitlesTween = null;
 
+	// portal 3D object
 	this.portal = null;
 
+	// state mouse over portal
 	this.isHoverPortal = false;
 
+	// if true, just load the objects and initialise the 3D scene
 	this.jumpToEnd = false;
 
+	// current state letting know if need to be initialize
 	this.initialized = false;
 
 }
 
+// INITIALISING CLASS
 Mission01.prototype.init = function() {
 
 	this.initialized = true;
 
 	scene.init();
 
+	// Send the object needed to the control controller
 	camControls.init(scene.camera, scene.gui);
 
 	this.createObjects();
@@ -51,6 +64,7 @@ Mission01.prototype.init = function() {
 
 };
 
+// LOAD OBJECTS NEEDED
 Mission01.prototype.createObjects = function() {
 
 	this.groupLoader = new groupLoader(this.groupName);
@@ -63,18 +77,22 @@ Mission01.prototype.createObjects = function() {
 
 };
 
+// ADD OBJECTS TO SCENE
 Mission01.prototype.addObjects = function(geometries) {
 
 	var meshes = null;
 
 	var hitBox = null;
 
+	// remove loading section
 	loader.end();
 
+	// create the meshes from dataModels and loaded geometries
 	meshes = this.groupLoader.createMeshes(geometries);
 
 	scene.addMeshes(meshes);
 
+	// Collisions are calculated with a minified version of the house for better performance created in a signle object.
 	hitBox = scene.scene.getObjectByName('minHouse--mission01');
 
 	TweenMax.set(this.section, { opacity: 0 } );
@@ -113,8 +131,10 @@ Mission01.prototype.addListeners = function() {
 Mission01.prototype.introFinished = function() {
 
 	camControls.controls.movementSpeed = this.movementSpeed;
+
 };
 
+// INITIALISATION OF PORTAL SELECTOR
 Mission01.prototype.getPortal = function() {
 
 	raf.start();
@@ -131,6 +151,7 @@ Mission01.prototype.getPortal = function() {
 
 };
 
+// FONCTION CALLED WHEN STATE OF SELECTOR.HOVER CHANGE
 Mission01.prototype.hoverPortal = function() {
 
 	if ( this.portalSelector.hover ) {
@@ -146,6 +167,7 @@ Mission01.prototype.hoverPortal = function() {
 
 };
 
+// FONCTION CALLED WHEN PORTAL IS CLICKED TO BE CLOSED
 Mission01.prototype.closePortal = function() {
 
 	if( this.portalSelector.hover === false )

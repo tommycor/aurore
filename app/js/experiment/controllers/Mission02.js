@@ -34,6 +34,8 @@ function Mission02( ) {
 
 	this.desactivateVision = this.desactivateVision.bind(this);
 
+	this.surpriseMothafucka = this.surpriseMothafucka.bind(this);
+
 
 	this.groupName = 'groundfloor';
 
@@ -99,6 +101,12 @@ Mission02.prototype.addObjects = function(geometries) {
 	this.door = scene.scene.getObjectByName('garden__portedentree');
 
 	scene.scene.remove(this.door);
+
+	this.easter_egg = new Konami();
+
+	this.easter_egg.code = this.surpriseMothafucka;
+
+	this.easter_egg.load();
 
 	meshes = this.groupLoader.createMeshes(geometries);
 
@@ -270,6 +278,15 @@ Mission02.prototype.transition = function() {
 	raf.start();
 
 	location.hash = 'mission03--start'
+
+};
+
+
+Mission02.prototype.surpriseMothafucka = function() {
+
+	this.harry = scene.scene.getObjectByName('groundfloor__cuisine--HarryPotter');
+
+	scene.scene.remove(this.harry);
 
 };
 
